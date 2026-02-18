@@ -44,8 +44,10 @@ const localBusiness = {
   email: "Paul@IslandRentalCarts.com",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "10 Melrose Landing Rd",
     addressLocality: "Daufuskie Island",
     addressRegion: "SC",
+    postalCode: "29915",
     addressCountry: "US",
   },
   geo: {

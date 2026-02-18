@@ -13,7 +13,7 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-bg.svg"
+          src="/images/island-golf-cart.png"
           alt="Electric golf cart on a sandy road on Daufuskie Island, South Carolina"
           fill
           className="object-cover object-center"
@@ -25,10 +25,6 @@ export function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-40 lg:pt-48 pb-48 lg:pb-64">
         <div className="max-w-4xl">
-          <p className="text-lime font-black tracking-widest uppercase text-xs mb-6">
-            Golf Cart on Daufuskie Island
-          </p>
-
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase leading-[0.8] tracking-tighter mb-8 drop-shadow-2xl">
             Daufuskie Island <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime to-lime-200">

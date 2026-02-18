@@ -1,5 +1,12 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import { PHONE, PHONE_HREF, EMAIL, EMAIL_HREF } from "@/lib/constants";
+import {
+  PHONE,
+  PHONE_HREF,
+  EMAIL,
+  EMAIL_HREF,
+  ADDRESS_STREET,
+  ADDRESS_CITY,
+} from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -87,9 +94,13 @@ export function Footer() {
                     {EMAIL}
                   </a>
                 </p>
-                <p className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 flex-shrink-0" />
-                  Daufuskie Island, SC
+                <p className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+                  <span>
+                    {ADDRESS_STREET}
+                    <br />
+                    {ADDRESS_CITY}
+                  </span>
                 </p>
               </address>
             </div>
