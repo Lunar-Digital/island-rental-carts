@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="50%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#hg)" width="1920" height="1080"/>
+  <circle cx="400" cy="700" r="300" fill="#065f46" opacity="0.3"/>
+  <circle cx="1500" cy="400" r="250" fill="#042f2e" opacity="0.3"/>
+  <text x="960" y="540" text-anchor="middle" dominant-baseline="middle" fill="#a3e635" font-family="system-ui, sans-serif" font-size="36" font-weight="900" opacity="0.15">HERO IMAGE PLACEHOLDER</text>
+</svg>

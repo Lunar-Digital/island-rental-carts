@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3fce3"/>
+      <stop offset="100%" stop-color="#ecfccb"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#cg)" width="800" height="600"/>
+  <rect x="200" y="250" width="400" height="200" rx="20" fill="#d9f99d" opacity="0.5"/>
+  <circle cx="300" cy="450" r="40" fill="#a3e635" opacity="0.3"/>
+  <circle cx="500" cy="450" r="40" fill="#a3e635" opacity="0.3"/>
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#064e3b" font-family="system-ui, sans-serif" font-size="24" font-weight="900" opacity="0.3">CART PHOTO</text>
+</svg>
