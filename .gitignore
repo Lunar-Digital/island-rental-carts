@@ -42,3 +42,6 @@ next-env.d.ts
 
 # figma make reference (source design, not deployed)
 /_figma_make_reference/
+
+# cursor AI rules (local dev tooling)
+.cursor/
