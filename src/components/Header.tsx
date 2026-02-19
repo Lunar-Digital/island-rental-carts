@@ -43,16 +43,17 @@ export function Header() {
       >
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative w-12 h-12 bg-lime rounded-xl flex items-center justify-center transform -skew-x-12 group-hover:skew-x-0 transition-transform shadow-lg shadow-lime/20"
-          >
-            <span className="font-black text-brand-950 text-xl skew-x-12 group-hover:skew-x-0 transition-transform">
+          <div className="relative w-12 h-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute inset-0 bg-lime rounded-xl transform -skew-x-12 group-hover:skew-x-0 transition-transform shadow-lg shadow-lime/20"
+            />
+            <span className="relative z-10 flex items-center justify-center w-full h-full font-black text-brand-950 text-xl">
               IRC
             </span>
-          </motion.div>
+          </div>
           <motion.span
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
