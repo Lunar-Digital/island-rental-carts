@@ -28,9 +28,10 @@ export function CartFeatures() {
               <div className="w-full lg:w-1/2">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-sm border-[3px] border-white ring-1 ring-gray-100 relative">
                   <Image
-                    src="/images/cart.svg"
-                    alt="4-seater electric golf cart available for daily rental on Daufuskie Island"
+                    src="/images/4-seater-electric-golf-cart-daufuskie-island-rental.png"
+                    alt="Green E-Z-GO 4-seater electric golf cart available for daily rental on Daufuskie Island, South Carolina"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
