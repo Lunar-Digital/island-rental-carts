@@ -82,7 +82,7 @@ export function Header() {
         <div className="hidden md:flex items-center">
           <Button
             asChild
-            className="bg-lime text-brand-950 px-8 py-3 rounded-full font-black text-sm hover:brightness-90 transition-all uppercase tracking-wide shadow-lg shadow-lime/20 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 hover:bg-lime"
+            className="bg-lime text-brand-950 px-8 py-3 rounded-full font-black text-sm hover:bg-white hover:scale-105 transition-all uppercase tracking-wide shadow-lg shadow-lime/20 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
           >
             <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
               Book Now
@@ -95,7 +95,7 @@ export function Header() {
           <Button
             asChild
             size="sm"
-            className="bg-lime text-brand-950 rounded-full font-black text-xs uppercase tracking-wide shadow-lg shadow-lime/20 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 hover:bg-lime"
+            className="bg-lime text-brand-950 rounded-full font-black text-xs uppercase tracking-wide shadow-lg shadow-lime/20 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 hover:bg-white hover:scale-105 transition-all"
           >
             <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
               Book Now
@@ -130,7 +130,7 @@ export function Header() {
                 ))}
                 <Button
                   asChild
-                  className="bg-lime text-brand-950 rounded-full font-black text-xl uppercase tracking-wide text-center py-6 mt-4 hover:brightness-90 hover:bg-lime h-auto"
+                  className="bg-lime text-brand-950 rounded-full font-black text-xl uppercase tracking-wide text-center py-6 mt-4 hover:bg-white transition-all h-auto"
                 >
                   <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
                     Book Now

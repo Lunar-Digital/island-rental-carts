@@ -118,7 +118,7 @@ export function PricingSection() {
                 <CardFooter className="p-8 pt-0">
                   <Button
                     asChild
-                    className="w-full py-4 rounded-full font-black text-center uppercase tracking-wide bg-lime text-brand-800 hover:brightness-90 hover:bg-lime shadow-lg hover:shadow-lime/30 hover:scale-[1.02] transition-all h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
+                    className="w-full py-4 rounded-full font-black text-center uppercase tracking-wide bg-lime text-brand-800 hover:bg-lime-300 shadow-lg hover:shadow-lime/30 hover:scale-[1.02] transition-all h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
                   >
                     <a
                       href={PEEK_URL}

@@ -75,7 +75,7 @@ export function WhyChooseUs() {
               <div className="mt-14">
                 <Button
                   asChild
-                  className="bg-lime text-brand-800 px-10 py-4 rounded-full font-black text-lg hover:brightness-90 hover:scale-105 transition-all uppercase tracking-wide shadow-[0_0_20px_rgba(163,230,53,0.3)] h-auto hover:bg-lime focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
+                  className="bg-lime text-brand-800 px-10 py-4 rounded-full font-black text-lg hover:bg-lime-300 hover:scale-105 transition-all uppercase tracking-wide shadow-[0_0_20px_rgba(163,230,53,0.3)] h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
                 >
                   <a
                     href={PEEK_URL}

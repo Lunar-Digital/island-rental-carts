@@ -62,7 +62,7 @@ export function FAQ() {
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <AnimateOnScroll>
           <div className="text-center mb-20">
-            <span className="text-brand-800 font-black tracking-widest uppercase text-xs bg-brand-800/5 px-3 py-1.5 rounded-md mb-6 inline-block border border-brand-800/10">
+            <span className="text-brand-800 font-black tracking-widest uppercase text-xs bg-brand-800/5 px-3 py-1.5 rounded-md mb-6 inline-block backdrop-blur-sm border border-brand-800/10">
               Common Questions About Daufuskie Island Golf Cart Rentals
             </span>
             <h2 className="text-5xl md:text-7xl font-black text-brand-800 uppercase tracking-tighter leading-none">

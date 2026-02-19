@@ -64,7 +64,7 @@ export function Newsletter() {
           <Button
             type="submit"
             disabled={status === "submitting"}
-            className="bg-lime text-brand-800 px-8 py-4 rounded-full font-black uppercase tracking-wide hover:brightness-90 hover:bg-lime transition-all shadow-[0_0_20px_rgba(163,230,53,0.3)] h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
+            className="bg-lime text-brand-800 px-8 py-4 rounded-full font-black uppercase tracking-wide hover:bg-lime-300 hover:scale-105 transition-all shadow-[0_0_20px_rgba(163,230,53,0.3)] h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-800"
           >
             {status === "submitting" ? (
               <>
