@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 import {
   PHONE,
   PHONE_HREF,
@@ -24,6 +24,26 @@ export function Footer() {
               Locally owned and operated. Providing reliable 4-seater electric
               golf cart rentals for your Daufuskie Island adventure.
             </p>
+            <div className="flex gap-4">
+              <a
+                href="https://www.facebook.com/profile.php?id=61561380748083"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Island Rental Carts on Facebook"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-lime hover:text-brand-950 transition-all focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/islandrentalcarts/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Island Rental Carts on Instagram"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-lime hover:text-brand-950 transition-all focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-12">
@@ -77,7 +97,7 @@ export function Footer() {
               </h4>
               <address className="not-italic space-y-4 font-bold text-gray-300">
                 <p className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <Phone className="w-4 h-4 shrink-0" />
                   <a
                     href={PHONE_HREF}
                     className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
@@ -86,7 +106,7 @@ export function Footer() {
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 flex-shrink-0" />
+                  <Mail className="w-4 h-4 shrink-0" />
                   <a
                     href={EMAIL_HREF}
                     className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
@@ -95,7 +115,7 @@ export function Footer() {
                   </a>
                 </p>
                 <p className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+                  <MapPin className="w-4 h-4 shrink-0 mt-1" />
                   <span>
                     {ADDRESS_STREET}
                     <br />
