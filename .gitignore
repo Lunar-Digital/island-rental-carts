@@ -46,3 +46,6 @@ next-env.d.ts
 
 # cursor AI rules (local dev tooling)
 .cursor/
+
+# QA audit output (generated, uploaded as artifact)
+/qa-output/

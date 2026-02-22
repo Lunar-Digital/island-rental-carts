@@ -1,0 +1,14 @@
+{
+  "production": {
+    "baseUrl": "",
+    "urlMode": "sitemap",
+    "maxUrls": 20,
+    "criticalPaths": ["/", "/about", "/contact"]
+  },
+  "preview": {
+    "baseUrl": "",
+    "urlMode": "single",
+    "maxUrls": 10,
+    "criticalPaths": ["/"]
+  }
+}

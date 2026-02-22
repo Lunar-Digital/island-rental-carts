@@ -1,0 +1,82 @@
+name: Site Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "preview"
+        type: choice
+        options:
+          - preview
+          - production
+      base_url:
+        description: "Base URL override (leave empty to use qa-targets.json)"
+        required: false
+        type: string
+        default: ""
+      url_mode:
+        description: "URL discovery mode"
+        required: true
+        default: "single"
+        type: choice
+        options:
+          - single
+          - sitemap
+      max_urls:
+        description: "Max URLs to test (sitemap mode)"
+        required: false
+        type: number
+        default: 20
+      one_url:
+        description: "Test a specific URL path (e.g. /about)"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Run Site Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Run audit
+        env:
+          INPUT_ENVIRONMENT: ${{ inputs.environment }}
+          INPUT_BASE_URL: ${{ inputs.base_url }}
+          INPUT_URL_MODE: ${{ inputs.url_mode }}
+          INPUT_MAX_URLS: ${{ inputs.max_urls }}
+          INPUT_ONE_URL: ${{ inputs.one_url }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: npx tsx qa/run.ts
+
+      - name: Upload audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-output-${{ github.run_number }}
+          path: qa-output/
+          retention-days: 30
