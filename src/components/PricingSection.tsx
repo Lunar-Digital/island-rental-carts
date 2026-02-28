@@ -41,10 +41,9 @@ const cards = [
     desc: "Our most popular option for extended stays.",
     badge: null,
     pill: "Weekly",
-    image: "/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg",
+    image: "/images/ezgo-golf-carts-lineup-daufuskie-island-rental.png",
     imageAlt:
-      "Dark purple EZ-GO golf cart parked on green grass with rainbow sky — electric golf cart daufuskie island rental",
-    imagePosition: "65% center",
+      "Three dark green EZ-GO golf carts with Island Rental Carts logo parked at Daufuskie Island — golf cart rental daufuskie island, electric golf cart daufuskie",
   },
 ];
 
@@ -97,11 +96,7 @@ export function PricingSection() {
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    style={
-                      "imagePosition" in item && item.imagePosition
-                        ? { objectPosition: item.imagePosition }
-                        : { objectPosition: "center" }
-                    }
+                    style={{ objectPosition: "center" }}
                   />
                   <Badge className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-800 font-black text-sm uppercase tracking-wide shadow-sm hover:bg-white/90 rounded-full px-4 py-2">
                     {item.pill}
