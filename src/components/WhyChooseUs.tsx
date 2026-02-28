@@ -29,10 +29,11 @@ export function WhyChooseUs() {
               <div className="absolute top-6 left-6 w-full h-full border-4 border-lime/30 rounded-[3rem] z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/3] transform transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2 border-4 border-brand-700">
                 <Image
-                  src="/images/about.svg"
-                  alt="Island Rental Carts golf cart parked on a tree-lined Daufuskie Island road"
+                  src="/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg"
+                  alt="Dark purple EZ-GO golf cart parked on green grass with rainbow sky at Daufuskie Island — golf cart rental daufuskie island, electric golf cart daufuskie"
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-800/60 to-transparent opacity-60" />
               </div>
