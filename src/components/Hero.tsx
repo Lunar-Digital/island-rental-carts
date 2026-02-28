@@ -37,7 +37,7 @@ export function Hero() {
             <span className="text-lime-300">
               DAUFUSKIE ISLAND golf cart rentals
             </span>
-            . Free delivery island wide, grab and go!
+            .
           </p>
 
           <div className="flex flex-col items-start gap-6">

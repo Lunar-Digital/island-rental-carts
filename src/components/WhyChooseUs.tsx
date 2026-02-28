@@ -49,8 +49,7 @@ export function WhyChooseUs() {
               </p>
 
               <h2 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-[0.9]">
-                Your Trusted Island <br />
-                Transportation
+                Your Trusted Daufuskie Island Transportation
               </h2>
 
               <p className="text-lime-100/80 text-lg mb-12 leading-relaxed font-bold">

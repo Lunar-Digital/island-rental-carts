@@ -4,11 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const features = [
-  "Comfortable seating for 4",
-  "Quiet electric ride",
-  "Easy island cruising",
   "Ready on arrival",
   "Well-maintained and reliable",
+  "Quiet electric ride",
+  "Comfortable seating for 4",
+  "Easy island cruising",
 ];
 
 export function CartFeatures() {
@@ -29,7 +29,7 @@ export function CartFeatures() {
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-sm border-[3px] border-white ring-1 ring-gray-100 relative">
                   <Image
                     src="/images/4-seater-electric-golf-cart-daufuskie-island-rental.png"
-                    alt="Green E-Z-GO 4-seater electric golf cart available for daily rental on Daufuskie Island, South Carolina"
+                    alt="Green E-Z-GO 4-seat electric golf cart available for daily rental on Daufuskie Island, South Carolina"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -44,7 +44,7 @@ export function CartFeatures() {
                 </Badge>
 
                 <h2 className="text-4xl md:text-5xl font-black text-brand-800 uppercase tracking-tighter mb-8 leading-none">
-                  4-Seater Electric Carts
+                  4-Seat Electric Carts
                 </h2>
 
                 <ul className="space-y-4 mb-8">
