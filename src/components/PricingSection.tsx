@@ -44,7 +44,7 @@ const cards = [
     image: "/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg",
     imageAlt:
       "Dark purple EZ-GO golf cart parked on green grass with rainbow sky — electric golf cart daufuskie island rental",
-    imagePosition: "28% center",
+    imagePosition: "65% center",
   },
 ];
 
