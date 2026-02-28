@@ -44,6 +44,7 @@ const cards = [
     image: "/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg",
     imageAlt:
       "Dark purple EZ-GO golf cart parked on green grass with rainbow sky — electric golf cart daufuskie island rental",
+    imagePosition: "28% center",
   },
 ];
 
@@ -95,7 +96,12 @@ export function PricingSection() {
                     alt={item.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center transform group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    style={
+                      "imagePosition" in item && item.imagePosition
+                        ? { objectPosition: item.imagePosition }
+                        : { objectPosition: "center" }
+                    }
                   />
                   <Badge className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-800 font-black text-sm uppercase tracking-wide shadow-sm hover:bg-white/90 rounded-full px-4 py-2">
                     {item.pill}
