@@ -30,6 +30,9 @@ const cards = [
     desc: "Perfect for day trips and quick getaways.",
     badge: "Most Popular",
     pill: "Daily",
+    image: "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
+    imageAlt:
+      "Two men driving a modern green EZ-GO electric golf cart on a paved path through a sunny Daufuskie Island golf course — golf cart rental daufuskie island",
   },
   {
     title: "Weekly Special",
@@ -38,6 +41,9 @@ const cards = [
     desc: "Our most popular option for extended stays.",
     badge: null,
     pill: "Weekly",
+    image: "/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg",
+    imageAlt:
+      "Dark purple EZ-GO golf cart parked on green grass with rainbow sky — electric golf cart daufuskie island rental",
   },
 ];
 
@@ -85,10 +91,11 @@ export function PricingSection() {
 
                 <div className="h-64 overflow-hidden relative">
                   <Image
-                    src="/images/cart.svg"
-                    alt={item.title}
+                    src={item.image}
+                    alt={item.imageAlt}
                     fill
-                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-center transform group-hover:scale-110 transition-transform duration-700"
                   />
                   <Badge className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-800 font-black text-sm uppercase tracking-wide shadow-sm hover:bg-white/90 rounded-full px-4 py-2">
                     {item.pill}
