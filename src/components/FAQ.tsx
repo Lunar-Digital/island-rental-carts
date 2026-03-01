@@ -91,7 +91,7 @@ export function FAQ({ faq: fromSanity }: FAQProps = {}) {
                 value={`item-${idx}`}
                 className="bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300 data-[state=open]:border-lime-500 data-[state=open]:shadow-[0_4px_20px_rgba(163,230,53,0.15)] data-[state=open]:ring-1 data-[state=open]:ring-lime-500 px-6 md:px-8"
               >
-                <AccordionTrigger className="text-xl md:text-2xl font-black uppercase tracking-tight text-gray-800 hover:text-brand-800 py-6 md:py-8 [&[data-state=open]]:text-brand-800 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2">
+                <AccordionTrigger className="text-xl md:text-2xl font-black uppercase tracking-tight text-gray-800 hover:text-brand-800 py-6 md:py-8 data-[state=open]:text-brand-800 focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-500 font-bold leading-relaxed text-lg pb-8 border-t border-gray-100 pt-4">
