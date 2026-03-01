@@ -35,4 +35,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Sanity admin
+
+Content is edited in **Sanity Studio** at `/admin`. The main tab is **Content Editor**; use the sidebar to open **Homepage**, **Blog posts**, **About**, or **Contact**.
+
+- **Top bar icons:** Sanity shows tooltips on hover (Drafts, Schedule, Publish, Changes, Presence, Notifications, Help, Account). A short reference is in [.cursor/SANITY_ADMIN_UX_IMPROVEMENTS.md](.cursor/SANITY_ADMIN_UX_IMPROVEMENTS.md) under "Sanity admin — top bar icons."
+- **Vision tab:** The GROQ query editor (Vision) is hidden in production; set `NEXT_PUBLIC_SANITY_SHOW_VISION=true` in `.env.local` to show it (see `.env.example`).
+
 <!-- QA: test line to verify Vercel preview deployments -->

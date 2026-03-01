@@ -12,6 +12,8 @@ const navLinks = [
   { name: "How It Works", href: "#how-it-works" },
   { name: "Pickup", href: "#pickup" },
   { name: "FAQ", href: "#faq" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Header() {

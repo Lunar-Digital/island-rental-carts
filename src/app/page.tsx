@@ -10,19 +10,40 @@ import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { JsonLd } from "@/components/JsonLd";
+import { sanityFetch } from "@/sanity/lib/client";
+import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
 
-export default function Home() {
+export default async function Home() {
+  const homepage = await sanityFetch<{
+    pricingTable?: { duration: string; price: string; highlight?: boolean }[];
+    pricingCards?: {
+      title: string;
+      price: string;
+      unit: string;
+      desc?: string;
+      badge?: string | null;
+      pill?: string;
+      imageUrl?: string | null;
+      imageAlt?: string | null;
+    }[];
+    testimonials?: { quote: string; name: string; title?: string }[];
+    faq?: { question: string; answer: string }[];
+  }>({ query: HOMEPAGE_QUERY, revalidate: 60 });
+
   return (
     <>
       <Header />
       <main>
         <Hero />
         <CartFeatures />
-        <PricingSection />
-        <Testimonials />
+        <PricingSection
+          pricingTable={homepage?.pricingTable}
+          pricingCards={homepage?.pricingCards}
+        />
+        <Testimonials testimonials={homepage?.testimonials} />
         <HowItWorks />
         <WhyChooseUs />
-        <FAQ />
+        <FAQ faq={homepage?.faq} />
         <Newsletter />
       </main>
       <Footer />

@@ -9,7 +9,7 @@ import {
 import { WaveDivider } from "@/components/WaveDivider";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
-const faqs = [
+const DEFAULT_FAQS = [
   {
     question: "How do I book a cart?",
     answer:
@@ -52,7 +52,14 @@ const faqs = [
   },
 ];
 
-export function FAQ() {
+type FAQItem = { question: string; answer: string };
+
+type FAQProps = {
+  faq?: FAQItem[] | null;
+};
+
+export function FAQ({ faq: fromSanity }: FAQProps = {}) {
+  const faqs = fromSanity?.length ? fromSanity : DEFAULT_FAQS;
   return (
     <section
       id="faq"

@@ -12,7 +12,7 @@ import { WaveDivider } from "@/components/WaveDivider";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { PEEK_URL } from "@/lib/constants";
 
-const pricing = [
+const DEFAULT_PRICING = [
   { duration: "1 Day", price: "$65" },
   { duration: "2 Days", price: "$130" },
   { duration: "3 Days", price: "$195" },
@@ -22,7 +22,7 @@ const pricing = [
   { duration: "1 Week", price: "$400", highlight: true },
 ];
 
-const cards = [
+const DEFAULT_CARDS = [
   {
     title: "Daily Rental",
     price: "$65",
@@ -30,7 +30,7 @@ const cards = [
     desc: "Perfect for day trips and quick getaways.",
     badge: "Most Popular",
     pill: "Daily",
-    image: "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
+    imageUrl: "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
     imageAlt:
       "Two men driving a modern green EZ-GO electric golf cart on a paved path through a sunny Daufuskie Island golf course — golf cart rental daufuskie island",
   },
@@ -41,13 +41,44 @@ const cards = [
     desc: "Our most popular option for extended stays.",
     badge: null,
     pill: "Weekly",
-    image: "/images/ezgo-golf-carts-lineup-daufuskie-island-rental.png",
+    imageUrl: "/images/ezgo-golf-carts-lineup-daufuskie-island-rental.png",
     imageAlt:
       "Three dark green EZ-GO golf carts with Island Rental Carts logo parked at Daufuskie Island — golf cart rental daufuskie island, electric golf cart daufuskie",
   },
 ];
 
-export function PricingSection() {
+type PricingRow = { duration: string; price: string; highlight?: boolean };
+type PricingCard = {
+  title: string;
+  price: string;
+  unit: string;
+  desc?: string | null;
+  badge?: string | null;
+  pill?: string | null;
+  imageUrl?: string | null;
+  imageAlt?: string | null;
+};
+
+type PricingSectionProps = {
+  pricingTable?: PricingRow[] | null;
+  pricingCards?: PricingCard[] | null;
+};
+
+export function PricingSection({
+  pricingTable,
+  pricingCards,
+}: PricingSectionProps = {}) {
+  const pricing = (pricingTable?.length ? pricingTable : DEFAULT_PRICING) as {
+    duration: string;
+    price: string;
+    highlight?: boolean;
+  }[];
+  const cardsSource = pricingCards?.length ? pricingCards : DEFAULT_CARDS;
+  const cards = cardsSource.slice(0, 2).map((c) => ({
+    ...c,
+    imageUrl: c.imageUrl ?? "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
+    imageAlt: c.imageAlt ?? "Golf cart rental",
+  }));
   return (
     <section
       id="pricing"
@@ -91,7 +122,7 @@ export function PricingSection() {
 
                 <div className="h-64 overflow-hidden relative">
                   <Image
-                    src={item.image}
+                    src={item.imageUrl}
                     alt={item.imageAlt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -99,7 +130,7 @@ export function PricingSection() {
                     style={{ objectPosition: "center" }}
                   />
                   <Badge className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-800 font-black text-sm uppercase tracking-wide shadow-sm hover:bg-white/90 rounded-full px-4 py-2">
-                    {item.pill}
+                    {item.pill ?? item.unit}
                   </Badge>
                 </div>
 

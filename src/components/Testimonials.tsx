@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { WaveDivider } from "@/components/WaveDivider";
 
-const testimonials = [
+const DEFAULT_TESTIMONIALS = [
   {
     quote:
       "ORDERING WAS SUPER EASY, AND THE PICKUP RIGHT AT THE FERRY MADE OUR START STRESS-FREE.",
@@ -24,8 +24,19 @@ const testimonials = [
   },
 ];
 
-export function Testimonials() {
+type Testimonial = { quote: string; name: string; title?: string };
+
+type TestimonialsProps = {
+  testimonials?: Testimonial[] | null;
+};
+
+export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {}) {
+  const testimonials =
+    fromSanity?.length ? fromSanity : DEFAULT_TESTIMONIALS;
   const [activeIndex, setActiveIndex] = useState(0);
+  const current = testimonials[activeIndex];
+
+  if (!current) return null;
 
   return (
     <section
@@ -36,16 +47,18 @@ export function Testimonials() {
       {/* Quote */}
       <div className="max-w-4xl px-6 text-center relative z-10 pt-12">
         <blockquote className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none mb-8 drop-shadow-sm">
-          &ldquo;{testimonials[activeIndex].quote}&rdquo;
+          &ldquo;{current.quote}&rdquo;
         </blockquote>
 
         <div className="flex flex-col items-center gap-1 mb-8">
           <span className="text-lime font-black uppercase tracking-normal text-lg md:text-xl">
-            {testimonials[activeIndex].name}
+            {current.name}
           </span>
-          <span className="text-white/80 font-medium text-sm">
-            {testimonials[activeIndex].title}
-          </span>
+          {current.title && (
+            <span className="text-white/80 font-medium text-sm">
+              {current.title}
+            </span>
+          )}
         </div>
       </div>
 
