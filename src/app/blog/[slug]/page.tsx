@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
 import { sanityFetch } from "@/sanity/lib/client";
-import { POST_BY_SLUG_QUERY, POST_SLUGS_QUERY } from "@/sanity/lib/queries";
+import { POST_BY_SLUG_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { getSiteUrl } from "@/lib/env";
 import type { Metadata } from "next";
@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
         </h1>
 
         {imageUrl && (
-          <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-10 bg-brand-800">
+          <div className="relative aspect-16/10 rounded-xl overflow-hidden mb-10 bg-brand-800">
             <Image
               src={imageUrl}
               alt={imageAlt}

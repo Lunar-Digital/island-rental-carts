@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { getSiteUrl } from "@/lib/env";
@@ -8,7 +9,7 @@ const siteUrl = getSiteUrl();
 
 export const dynamic = "force-dynamic";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog | Island Rental Carts – Daufuskie Island Golf Cart Rentals",
   description:
     "Tips, guides, and news about Daufuskie Island golf cart rentals and island life.",
@@ -48,12 +49,12 @@ export default async function BlogIndexPage() {
         {!posts?.length ? (
           <p className="text-gray-400">
             No posts yet. Add content in the{" "}
-            <a
+            <Link
               href="/admin"
               className="text-lime hover:underline"
             >
               admin dashboard
-            </a>
+            </Link>
             .
           </p>
         ) : (
@@ -65,7 +66,7 @@ export default async function BlogIndexPage() {
                   className="group block rounded-xl overflow-hidden bg-brand-900 border border-white/10 hover:border-lime/30 transition-colors"
                 >
                   {post.featuredImageUrl ? (
-                    <div className="relative aspect-[16/10] bg-brand-800">
+                    <div className="relative aspect-16/10 bg-brand-800">
                       <Image
                         src={post.featuredImageUrl}
                         alt={post.featuredImageAlt ?? post.title ?? "Blog post"}
@@ -75,7 +76,7 @@ export default async function BlogIndexPage() {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[16/10] bg-brand-800 flex items-center justify-center text-gray-500">
+                    <div className="aspect-16/10 bg-brand-800 flex items-center justify-center text-gray-500">
                       No image
                     </div>
                   )}
