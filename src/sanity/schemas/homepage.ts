@@ -60,8 +60,8 @@ export const homepage = defineType({
             {
               name: "image",
               type: "featuredImage",
-              title: "Card image",
-              description: "Upload a new image or clear this field to remove the image (site will use a default).",
+              title: "Card image (upload or remove)",
+              description: "Upload a new image. To remove the photo: click the image, then click the trash/remove icon in the toolbar above it. When empty, the site uses a default image.",
             },
             { name: "title", type: "string", title: "Title", validation: (Rule) => Rule.required(), description: "e.g. Daily Rental" },
             { name: "price", type: "string", title: "Price", validation: (Rule) => Rule.required(), description: "e.g. $65" },
