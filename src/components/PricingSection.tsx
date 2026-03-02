@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -181,7 +181,7 @@ export function PricingSection({
                 Complete Price List
               </h3>
               <p className="relative z-10 text-lime font-bold tracking-widest text-sm uppercase">
-                Standard 4-Seater Carts
+                Standard 4-Seat Carts
               </p>
             </div>
 
@@ -230,18 +230,14 @@ export function PricingSection({
               <div className="mt-10 text-center border-t border-gray-100 pt-8">
                 <Button
                   asChild
-                  variant="link"
-                  className="text-brand-800 font-black uppercase tracking-wide hover:text-lime-600 transition-colors group focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
+                  className="bg-brand-800 text-lime px-12 py-5 rounded-full font-black text-lg hover:bg-brand-900 hover:scale-105 transition-all uppercase tracking-wide shadow-xl shadow-brand-800/20 h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
                 >
                   <a
                     href={PEEK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="border-b-2 border-brand-800 group-hover:border-lime-600 pb-0.5">
-                      Reserve Your Cart
-                    </span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    Book Now
                   </a>
                 </Button>
               </div>

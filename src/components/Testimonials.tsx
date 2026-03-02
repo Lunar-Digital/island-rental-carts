@@ -63,7 +63,7 @@ export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {
       </div>
 
       {/* Dots */}
-      <div className="flex justify-center gap-3 mb-8">
+      <div className="flex justify-center gap-3 mb-24">
         {testimonials.map((_, i) => (
           <button
             key={i}
@@ -75,11 +75,6 @@ export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {
           />
         ))}
       </div>
-
-      <p className="text-white/20 text-[10px] uppercase tracking-widest font-medium relative z-10 mb-24">
-        Testimonials shown are placeholders until verified customer reviews are
-        collected.
-      </p>
 
       <WaveDivider colors={["#065f46", "#022c22", "#ffffff"]} />
     </section>

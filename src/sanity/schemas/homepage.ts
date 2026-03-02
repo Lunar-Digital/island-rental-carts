@@ -44,7 +44,39 @@ export const homepage = defineType({
       group: "cartFeatures",
       description: "Leave empty to use default: \"Cart Details\".",
     }),
-    // ——— Pricing ———
+    // ——— Pricing (cards first so admins see them at top) ———
+    defineField({
+      name: "pricingCards",
+      title: "Pricing cards",
+      type: "array",
+      group: "pricing",
+      description: "The two main cards (Daily Rental, Weekly Special). Max 2. Upload or change images here; clear the image field to remove.",
+      validation: (Rule) => Rule.max(2),
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "pricingCard",
+          fields: [
+            {
+              name: "image",
+              type: "featuredImage",
+              title: "Card image",
+              description: "Upload a new image or clear this field to remove the image (site will use a default).",
+            },
+            { name: "title", type: "string", title: "Title", validation: (Rule) => Rule.required(), description: "e.g. Daily Rental" },
+            { name: "price", type: "string", title: "Price", validation: (Rule) => Rule.required(), description: "e.g. $65" },
+            { name: "unit", type: "string", title: "Unit", validation: (Rule) => Rule.required(), description: "e.g. Day or Week" },
+            { name: "desc", type: "text", title: "Description", rows: 2 },
+            { name: "badge", type: "string", title: "Badge (e.g. Most Popular)", description: "Leave empty for no badge." },
+            { name: "pill", type: "string", title: "Pill label", description: "e.g. Daily or Weekly" },
+          ],
+          preview: {
+            select: { title: "title" },
+            prepare: ({ title }) => ({ title: title ?? "Pricing card" }),
+          },
+        }),
+      ],
+    }),
     defineField({
       name: "pricingTable",
       title: "Price table rows",
@@ -63,33 +95,6 @@ export const homepage = defineType({
           preview: {
             select: { duration: "duration", price: "price" },
             prepare: ({ duration, price }) => ({ title: `${duration} — ${price}` }),
-          },
-        }),
-      ],
-    }),
-    defineField({
-      name: "pricingCards",
-      title: "Pricing cards",
-      type: "array",
-      group: "pricing",
-      description: "The two main cards (Daily Rental, Weekly Special). Max 2 for layout.",
-      validation: (Rule) => Rule.max(2),
-      of: [
-        defineArrayMember({
-          type: "object",
-          name: "pricingCard",
-          fields: [
-            { name: "title", type: "string", title: "Title", validation: (Rule) => Rule.required(), description: "e.g. Daily Rental" },
-            { name: "price", type: "string", title: "Price", validation: (Rule) => Rule.required(), description: "e.g. $65" },
-            { name: "unit", type: "string", title: "Unit", validation: (Rule) => Rule.required(), description: "e.g. Day or Week" },
-            { name: "desc", type: "text", title: "Description", rows: 2 },
-            { name: "badge", type: "string", title: "Badge (e.g. Most Popular)", description: "Leave empty for no badge." },
-            { name: "pill", type: "string", title: "Pill label", description: "e.g. Daily or Weekly" },
-            { name: "image", type: "featuredImage", title: "Card image" },
-          ],
-          preview: {
-            select: { title: "title" },
-            prepare: ({ title }) => ({ title: title ?? "Pricing card" }),
           },
         }),
       ],

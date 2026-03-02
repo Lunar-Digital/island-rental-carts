@@ -21,8 +21,8 @@ export function Footer() {
               <span className="text-lime">Carts</span>
             </span>
             <p className="text-gray-400 font-medium leading-relaxed mb-8">
-              Locally owned and operated. Providing reliable 4-seater electric
-              golf cart rentals for your Daufuskie Island adventure.
+              Locally owned and operated. Providing reliable electric golf cart
+              rentals for your Daufuskie Island adventure.
             </p>
             <div className="flex gap-4">
               <a

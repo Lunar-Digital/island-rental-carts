@@ -18,6 +18,8 @@ const showVision =
   process.env.NEXT_PUBLIC_SANITY_SHOW_VISION === "true";
 
 export default defineConfig({
+  name: "irc-dashboard",
+  title: "IRC Dashboard",
   projectId,
   dataset,
   basePath: "/admin",
