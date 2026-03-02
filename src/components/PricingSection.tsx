@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -30,9 +29,6 @@ const DEFAULT_CARDS = [
     desc: "Perfect for day trips and quick getaways.",
     badge: "Most Popular",
     pill: "Daily",
-    imageUrl: "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
-    imageAlt:
-      "Two men driving a modern green EZ-GO electric golf cart on a paved path through a sunny Daufuskie Island golf course — golf cart rental daufuskie island",
   },
   {
     title: "Weekly Special",
@@ -41,9 +37,6 @@ const DEFAULT_CARDS = [
     desc: "Our most popular option for extended stays.",
     badge: null,
     pill: "Weekly",
-    imageUrl: "/images/ezgo-golf-carts-lineup-daufuskie-island-rental.png",
-    imageAlt:
-      "Three dark green EZ-GO golf carts with Island Rental Carts logo parked at Daufuskie Island — golf cart rental daufuskie island, electric golf cart daufuskie",
   },
 ];
 
@@ -55,8 +48,6 @@ type PricingCard = {
   desc?: string | null;
   badge?: string | null;
   pill?: string | null;
-  imageUrl?: string | null;
-  imageAlt?: string | null;
 };
 
 type PricingSectionProps = {
@@ -74,11 +65,7 @@ export function PricingSection({
     highlight?: boolean;
   }[];
   const cardsSource = pricingCards?.length ? pricingCards : DEFAULT_CARDS;
-  const cards = cardsSource.slice(0, 2).map((c) => ({
-    ...c,
-    imageUrl: c.imageUrl ?? "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg",
-    imageAlt: c.imageAlt ?? "Golf cart rental",
-  }));
+  const cards = cardsSource.slice(0, 2);
   return (
     <section
       id="pricing"
@@ -113,28 +100,23 @@ export function PricingSection({
                     : "border border-gray-100"
                 }`}
               >
-                {item.badge && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-brand-800 text-lime px-6 py-1.5 rounded-b-xl z-20 font-black uppercase text-xs tracking-widest shadow-lg flex items-center gap-2">
-                    <Star className="w-3 h-3 fill-lime text-lime" />{" "}
-                    {item.badge}
-                  </div>
-                )}
-
-                <div className="h-64 overflow-hidden relative">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    style={{ objectPosition: "center" }}
-                  />
-                  <Badge className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-brand-800 font-black text-sm uppercase tracking-wide shadow-sm hover:bg-white/90 rounded-full px-4 py-2">
-                    {item.pill ?? item.unit}
-                  </Badge>
-                </div>
-
                 <CardHeader className="p-8 pb-0">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    {item.badge ? (
+                      <Badge className="bg-brand-800 text-lime hover:bg-brand-800 font-black uppercase text-xs tracking-widest px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 w-fit">
+                        <Star className="w-3 h-3 fill-lime text-lime shrink-0" />
+                        {item.badge}
+                      </Badge>
+                    ) : (
+                      <span />
+                    )}
+                    <Badge
+                      variant="outline"
+                      className="border-2 border-brand-800 text-brand-800 bg-white font-black text-sm uppercase tracking-wide rounded-full px-4 py-2 hover:bg-brand-50"
+                    >
+                      {item.pill ?? item.unit}
+                    </Badge>
+                  </div>
                   <h3 className="text-3xl font-black text-brand-800 uppercase mb-3 tracking-tight">
                     {item.title}
                   </h3>

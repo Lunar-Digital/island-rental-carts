@@ -6,11 +6,7 @@ export const HOMEPAGE_QUERY = `*[_id == "homepage"][0] {
   cartFeaturesSectionTitle,
   cartFeaturesBadge,
   pricingTable,
-  pricingCards[] {
-    title, price, unit, desc, badge, pill,
-    "imageUrl": image.asset->url,
-    "imageAlt": image.alt
-  },
+  pricingCards[] { title, price, unit, desc, badge, pill },
   testimonials[] { quote, name, title, "avatarUrl": avatar.asset->url, "avatarAlt": avatar.alt },
   howItWorksSteps[] { title, description },
   howItWorksSectionTitle,

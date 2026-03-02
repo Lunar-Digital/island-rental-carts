@@ -26,8 +26,6 @@ export default async function Home() {
       desc?: string;
       badge?: string | null;
       pill?: string;
-      imageUrl?: string | null;
-      imageAlt?: string | null;
     }[];
     testimonials?: { quote: string; name: string; title?: string }[];
     howItWorksSteps?: { title: string; description: string }[];

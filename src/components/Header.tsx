@@ -19,6 +19,11 @@ const navLinks = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
@@ -87,7 +92,7 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile: Book Now + Hamburger */}
+        {/* Mobile: Book Now + Hamburger (Sheet only after mount to avoid Radix ID hydration mismatch) */}
         <div className="flex md:hidden items-center gap-3">
           <Button
             asChild
@@ -98,44 +103,54 @@ export function Header() {
               Book Now
             </a>
           </Button>
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="text-white w-10 h-10 flex items-center justify-center border border-white/20 rounded-lg focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
-                aria-label="Open menu"
-              >
-                <Menu className="w-6 h-6" />
-              </button>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="bg-brand-950 border-brand-700 text-white w-80 [&>button]:text-white [&>button]:hover:text-lime"
-            >
-              <nav
-                className="flex flex-col gap-6 mt-12 px-2"
-                aria-label="Mobile navigation"
-              >
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-3xl font-black uppercase tracking-tight hover:text-lime transition-colors"
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-                <Button
-                  asChild
-                  className="bg-lime text-brand-950 rounded-full font-black text-xl uppercase tracking-wide text-center py-6 mt-4 hover:bg-white transition-all h-auto"
+          {mounted ? (
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className="text-white w-10 h-10 flex items-center justify-center border border-white/20 rounded-lg focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
+                  aria-label="Open menu"
                 >
-                  <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
-                    Book Now
-                  </a>
-                </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
+                  <Menu className="w-6 h-6" />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="bg-brand-950 border-brand-700 text-white w-80 [&>button]:text-white [&>button]:hover:text-lime"
+              >
+                <nav
+                  className="flex flex-col gap-6 mt-12 px-2"
+                  aria-label="Mobile navigation"
+                >
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-3xl font-black uppercase tracking-tight hover:text-lime transition-colors"
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                  <Button
+                    asChild
+                    className="bg-lime text-brand-950 rounded-full font-black text-xl uppercase tracking-wide text-center py-6 mt-4 hover:bg-white transition-all h-auto"
+                  >
+                    <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
+                      Book Now
+                    </a>
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <button
+              type="button"
+              className="text-white w-10 h-10 flex items-center justify-center border border-white/20 rounded-lg focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          )}
         </div>
       </nav>
     </header>

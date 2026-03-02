@@ -50,19 +50,13 @@ export const homepage = defineType({
       title: "Pricing cards",
       type: "array",
       group: "pricing",
-      description: "The two main cards (Daily Rental, Weekly Special). Max 2. Upload or change images here; clear the image field to remove.",
+      description: "The two main cards (Daily Rental, Weekly Special). Max 2.",
       validation: (Rule) => Rule.max(2),
       of: [
         defineArrayMember({
           type: "object",
           name: "pricingCard",
           fields: [
-            {
-              name: "image",
-              type: "featuredImage",
-              title: "Card image (upload or remove)",
-              description: "Upload a new image. To remove the photo: click the image, then click the trash/remove icon in the toolbar above it. When empty, the site uses a default image.",
-            },
             { name: "title", type: "string", title: "Title", validation: (Rule) => Rule.required(), description: "e.g. Daily Rental" },
             { name: "price", type: "string", title: "Price", validation: (Rule) => Rule.required(), description: "e.g. $65" },
             { name: "unit", type: "string", title: "Unit", validation: (Rule) => Rule.required(), description: "e.g. Day or Week" },
