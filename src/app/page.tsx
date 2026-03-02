@@ -15,6 +15,9 @@ import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home() {
   const homepage = await sanityFetch<{
+    featureBullets?: string[];
+    cartFeaturesSectionTitle?: string | null;
+    cartFeaturesBadge?: string | null;
     pricingTable?: { duration: string; price: string; highlight?: boolean }[];
     pricingCards?: {
       title: string;
@@ -27,7 +30,16 @@ export default async function Home() {
       imageAlt?: string | null;
     }[];
     testimonials?: { quote: string; name: string; title?: string }[];
+    howItWorksSteps?: { title: string; description: string }[];
+    howItWorksSectionTitle?: string | null;
+    howItWorksBadge?: string | null;
+    benefits?: string[];
+    whyChooseUsSectionTitle?: string | null;
+    whyChooseUsIntro?: string | null;
+    whyChooseUsBadge?: string | null;
     faq?: { question: string; answer: string }[];
+    newsletterHeading?: string | null;
+    newsletterSubtext?: string | null;
   }>({ query: HOMEPAGE_QUERY, revalidate: 60 });
 
   return (
@@ -35,16 +47,32 @@ export default async function Home() {
       <Header />
       <main>
         <Hero />
-        <CartFeatures />
+        <CartFeatures
+          featureBullets={homepage?.featureBullets}
+          sectionTitle={homepage?.cartFeaturesSectionTitle ?? undefined}
+          badge={homepage?.cartFeaturesBadge ?? undefined}
+        />
         <PricingSection
           pricingTable={homepage?.pricingTable}
           pricingCards={homepage?.pricingCards}
         />
         <Testimonials testimonials={homepage?.testimonials} />
-        <HowItWorks />
-        <WhyChooseUs />
+        <HowItWorks
+          steps={homepage?.howItWorksSteps}
+          sectionTitle={homepage?.howItWorksSectionTitle ?? undefined}
+          badge={homepage?.howItWorksBadge ?? undefined}
+        />
+        <WhyChooseUs
+          benefits={homepage?.benefits}
+          sectionTitle={homepage?.whyChooseUsSectionTitle ?? undefined}
+          intro={homepage?.whyChooseUsIntro ?? undefined}
+          badge={homepage?.whyChooseUsBadge ?? undefined}
+        />
         <FAQ faq={homepage?.faq} />
-        <Newsletter />
+        <Newsletter
+          heading={homepage?.newsletterHeading ?? undefined}
+          subtext={homepage?.newsletterSubtext ?? undefined}
+        />
       </main>
       <Footer />
       <BackToTop />

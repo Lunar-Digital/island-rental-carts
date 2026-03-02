@@ -3,7 +3,7 @@ import { Check, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
-const features = [
+const defaultFeatures = [
   "Ready on arrival",
   "Well-maintained and reliable",
   "Quiet electric ride",
@@ -11,7 +11,25 @@ const features = [
   "Easy island cruising",
 ];
 
-export function CartFeatures() {
+const DEFAULT_SECTION_TITLE = "4-Seat Electric Carts";
+const DEFAULT_BADGE = "Cart Details";
+
+type CartFeaturesProps = {
+  featureBullets?: string[] | null;
+  sectionTitle?: string;
+  badge?: string;
+};
+
+export function CartFeatures({
+  featureBullets,
+  sectionTitle,
+  badge,
+}: CartFeaturesProps = {}) {
+  const features =
+    featureBullets && featureBullets.length > 0 ? featureBullets : defaultFeatures;
+  const heading = sectionTitle?.trim() || DEFAULT_SECTION_TITLE;
+  const badgeLabel = badge?.trim() || DEFAULT_BADGE;
+
   return (
     <section
       id="rentals"
@@ -26,7 +44,7 @@ export function CartFeatures() {
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
               {/* Image */}
               <div className="w-full lg:w-1/2">
-                <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-sm border-[3px] border-white ring-1 ring-gray-100 relative">
+                <div className="aspect-4/3 rounded-3xl overflow-hidden shadow-sm border-[3px] border-white ring-1 ring-gray-100 relative">
                   <Image
                     src="/images/4-seater-electric-golf-cart-daufuskie-island-rental.png"
                     alt="Green E-Z-GO 4-seat electric golf cart available for daily rental on Daufuskie Island, South Carolina"
@@ -40,18 +58,18 @@ export function CartFeatures() {
               {/* Features */}
               <div className="w-full lg:w-1/2">
                 <Badge className="bg-brand-800 text-lime hover:bg-brand-800 font-black tracking-widest uppercase text-xs px-3 py-1.5 rounded-md mb-6">
-                  Cart Details
+                  {badgeLabel}
                 </Badge>
 
                 <h2 className="text-4xl md:text-5xl font-black text-brand-800 uppercase tracking-tighter mb-8 leading-none">
-                  4-Seat Electric Carts
+                  {heading}
                 </h2>
 
                 <ul className="space-y-4 mb-8">
                   {features.map((item) => (
                     <li key={item} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-lime-100 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3.5 h-3.5 text-brand-800 stroke-[3]" />
+                      <div className="w-6 h-6 rounded-full bg-lime-100 flex items-center justify-center shrink-0">
+                        <Check className="w-3.5 h-3.5 text-brand-800 stroke-3" />
                       </div>
                       <span className="text-lg font-bold text-gray-700">
                         {item}

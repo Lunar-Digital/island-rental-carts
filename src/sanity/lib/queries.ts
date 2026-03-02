@@ -1,7 +1,10 @@
 /**
- * Homepage singleton (id: homepage). Pricing, testimonials, FAQ.
+ * Homepage singleton (id: homepage). Cart features, pricing, testimonials, how it works, why choose us, FAQ, newsletter.
  */
 export const HOMEPAGE_QUERY = `*[_id == "homepage"][0] {
+  featureBullets,
+  cartFeaturesSectionTitle,
+  cartFeaturesBadge,
   pricingTable,
   pricingCards[] {
     title, price, unit, desc, badge, pill,
@@ -9,7 +12,16 @@ export const HOMEPAGE_QUERY = `*[_id == "homepage"][0] {
     "imageAlt": image.alt
   },
   testimonials[] { quote, name, title, "avatarUrl": avatar.asset->url, "avatarAlt": avatar.alt },
-  faq[] { question, answer }
+  howItWorksSteps[] { title, description },
+  howItWorksSectionTitle,
+  howItWorksBadge,
+  benefits,
+  whyChooseUsSectionTitle,
+  whyChooseUsIntro,
+  whyChooseUsBadge,
+  faq[] { question, answer },
+  newsletterHeading,
+  newsletterSubtext
 }`;
 
 /**

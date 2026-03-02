@@ -1,11 +1,13 @@
-import { CalendarCheck, MapPin, Palmtree } from "lucide-react";
+import { CalendarCheck, MapPin, Palmtree, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { WaveDivider } from "@/components/WaveDivider";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { PEEK_URL } from "@/lib/constants";
 
-const steps = [
+const ICONS: LucideIcon[] = [CalendarCheck, MapPin, Palmtree];
+
+const defaultSteps = [
   {
     num: 1,
     icon: CalendarCheck,
@@ -26,7 +28,33 @@ const steps = [
   },
 ];
 
-export function HowItWorks() {
+const DEFAULT_BADGE = "Simple Process";
+const DEFAULT_SECTION_TITLE = "How It Works";
+
+type HowItWorksProps = {
+  steps?: { title: string; description: string }[] | null;
+  sectionTitle?: string;
+  badge?: string;
+};
+
+export function HowItWorks({
+  steps: cmsSteps,
+  sectionTitle,
+  badge,
+}: HowItWorksProps = {}) {
+  const useCms =
+    cmsSteps && cmsSteps.length > 0 && cmsSteps.every((s) => s.title && s.description);
+  const steps = useCms
+    ? cmsSteps.map((s, idx) => ({
+        num: idx + 1,
+        icon: ICONS[idx] ?? ICONS[0],
+        title: s.title,
+        desc: s.description,
+      }))
+    : defaultSteps;
+  const badgeLabel = badge?.trim() || DEFAULT_BADGE;
+  const heading = sectionTitle?.trim() || DEFAULT_SECTION_TITLE;
+
   return (
     <section
       id="how-it-works"
@@ -45,10 +73,16 @@ export function HowItWorks() {
               variant="outline"
               className="text-brand-800 font-black tracking-widest uppercase text-xs border-brand-800/30 px-3 py-1.5 rounded-full mb-6"
             >
-              Simple Process
+              {badgeLabel}
             </Badge>
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-brand-800">
-              How It <span className="text-lime-600">Works</span>
+              {heading === "How It Works" ? (
+                <>
+                  How It <span className="text-lime-600">Works</span>
+                </>
+              ) : (
+                heading
+              )}
             </h2>
           </div>
         </AnimateOnScroll>
@@ -58,7 +92,7 @@ export function HowItWorks() {
             {steps.map((step, idx) => (
               <div key={step.num} className="relative group">
                 {idx !== steps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-gradient-to-r from-lime-200 to-transparent z-0" />
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-linear-to-r from-lime-200 to-transparent z-0" />
                 )}
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <div className="w-24 h-24 rounded-[2rem] bg-lime flex items-center justify-center mb-10 shadow-[0_0_30px_rgba(163,230,53,0.3)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">

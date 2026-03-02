@@ -6,7 +6,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { WaveDivider } from "@/components/WaveDivider";
 
-export function Newsletter() {
+const DEFAULT_HEADING = "Get Island Updates";
+const DEFAULT_SUBTEXT =
+  "Sign up for news, special offers, and seasonal discounts for your next Daufuskie Island trip.";
+
+type NewsletterProps = {
+  heading?: string;
+  subtext?: string;
+};
+
+export function Newsletter({
+  heading,
+  subtext,
+}: NewsletterProps = {}) {
+  const headingText = heading?.trim() || DEFAULT_HEADING;
+  const subtextContent = subtext?.trim() || DEFAULT_SUBTEXT;
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<
     "idle" | "error" | "submitting" | "success"
@@ -38,11 +52,10 @@ export function Newsletter() {
     >
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-6 drop-shadow-lg">
-          Get Island Updates
+          {headingText}
         </h2>
         <p className="text-lime-100 font-bold text-lg mb-10 max-w-lg mx-auto leading-relaxed opacity-90">
-          Sign up for news, special offers, and seasonal discounts for your next
-          Daufuskie Island trip.
+          {subtextContent}
         </p>
 
         <form
@@ -59,7 +72,7 @@ export function Newsletter() {
               if (status === "error") setStatus("idle");
             }}
             disabled={status === "submitting"}
-            className="flex-grow bg-white/10 text-white px-6 py-4 rounded-full font-bold placeholder-lime-200/50 focus:outline-none focus:ring-4 focus:ring-lime/50 shadow-inner border border-white/20 backdrop-blur-sm h-auto"
+            className="grow bg-white/10 text-white px-6 py-4 rounded-full font-bold placeholder-lime-200/50 focus:outline-none focus:ring-4 focus:ring-lime/50 shadow-inner border border-white/20 backdrop-blur-sm h-auto"
           />
           <Button
             type="submit"
