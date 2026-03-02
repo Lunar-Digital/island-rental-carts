@@ -52,8 +52,8 @@ export function WhyChooseUs({
               <div className="absolute top-6 left-6 w-full h-full border-4 border-lime/30 rounded-[3rem] z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-4/3 transform transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2 border-4 border-brand-700">
                 <Image
-                  src="/images/ezgo-golf-cart-daufuskie-rental-rainbow-sky.jpg"
-                  alt="Dark purple EZ-GO golf cart parked on green grass with rainbow sky at Daufuskie Island — golf cart rental daufuskie island, electric golf cart daufuskie"
+                  src="/images/avenue-of-the-oaks-daufuskie-island.png"
+                  alt="Avenue of the Oaks with Spanish moss along a scenic path on Daufuskie Island — explore by golf cart rental, daufuskie island transportation"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center"
