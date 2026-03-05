@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
 
-export const size = { width: 32, height: 32 };
+export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 /**
- * Browser tab icon — matches the header logo: lime background, dark "IRC" text.
+ * Apple touch icon (home screen) — matches the header logo: lime background, dark "IRC" text.
  */
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -17,15 +17,15 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#a3e635",
-          borderRadius: "8px",
+          borderRadius: "24px",
         }}
       >
         <span
           style={{
             color: "#022c22",
-            fontSize: "14px",
+            fontSize: "72px",
             fontWeight: 900,
-            letterSpacing: "-0.5px",
+            letterSpacing: "-2px",
           }}
         >
           IRC
