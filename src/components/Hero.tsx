@@ -48,7 +48,7 @@ export function Hero() {
               className="bg-[#9ae600] text-brand-800 px-10! py-5 rounded-full font-black text-xl hover:bg-lime-300 hover:scale-105 transition-all flex items-center justify-center gap-3 uppercase tracking-wider shadow-[0_0_40px_rgba(163,230,53,0.4)] h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
             >
               <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
-                Book Now <ArrowRight className="w-6 h-6 stroke-[3]" />
+                Book Now <ArrowRight className="w-6 h-6 stroke-3" />
               </a>
             </Button>
 
