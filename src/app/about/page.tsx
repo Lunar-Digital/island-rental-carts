@@ -132,7 +132,7 @@ export default async function AboutPage() {
             <p className="text-xl text-gray-600 font-medium mb-10">{title}</p>
           )}
           {imageUrl && (
-            <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-10 bg-brand-100">
+            <div className="relative aspect-16/10 rounded-xl overflow-hidden mb-10 bg-brand-100">
               <Image
                 src={imageUrl}
                 alt={imageAlt}
