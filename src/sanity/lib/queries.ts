@@ -47,7 +47,7 @@ export const POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(
   "metaDescription": seo.metaDescription
 }`;
 
-export const POST_SLUGS_QUERY = `*[_type == "post" && defined(slug.current)]{ "slug": slug.current }`;
+export const POST_SLUGS_QUERY = `*[_type == "post" && defined(slug.current)]{ "slug": slug.current, "lastModified": coalesce(_updatedAt, publishedAt) }`;
 
 export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   _id,
