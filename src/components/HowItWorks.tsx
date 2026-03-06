@@ -116,7 +116,7 @@ export function HowItWorks({
               asChild
               className="bg-brand-800 text-lime px-12 py-5 rounded-full font-black text-lg hover:bg-brand-900 hover:scale-105 transition-all uppercase tracking-wide shadow-xl shadow-brand-800/20 h-auto focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2"
             >
-              <a href={PEEK_URL} target="_blank" rel="noopener noreferrer">
+              <a href={PEEK_URL} target="_blank" rel="noopener noreferrer" data-gtm-event="book_now">
                 Book Now
               </a>
             </Button>

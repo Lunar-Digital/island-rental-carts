@@ -101,6 +101,7 @@ export function WhyChooseUs({
                     href={PEEK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-gtm-event="book_now"
                   >
                     Book Now
                   </a>

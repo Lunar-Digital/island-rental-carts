@@ -145,6 +145,7 @@ export function PricingSection({
                       href={PEEK_URL}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-gtm-event="book_now"
                     >
                       Book Now
                     </a>
@@ -218,6 +219,7 @@ export function PricingSection({
                     href={PEEK_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-gtm-event="book_now"
                   >
                     Book Now
                   </a>
