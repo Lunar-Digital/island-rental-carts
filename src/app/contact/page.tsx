@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { PortableTextImage } from "@/components/PortableTextImage";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -55,6 +56,11 @@ const portableTextComponents = {
     ),
     normal: ({ children }: { children?: React.ReactNode }) => (
       <p className="mb-4 text-gray-600 leading-relaxed">{children}</p>
+    ),
+  },
+  types: {
+    image: ({ value }: { value?: { asset?: { _ref?: string }; alt?: string | null; caption?: string | null } }) => (
+      <PortableTextImage value={value} altFallback="Contact Island Rental Carts — Daufuskie Island golf cart rental" className="rounded-xl overflow-hidden my-6" />
     ),
   },
   marks: {

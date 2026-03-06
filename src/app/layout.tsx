@@ -1,9 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { getSiteUrl } from "@/lib/env";
 import "./globals.css";
 
 const siteUrl = getSiteUrl();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/images/daufuskie-island-golf-cart-rentals-og.jpg",
+        url: "/images/daufuskie-island-golf-cart-rentals-og.webp",
         width: 1200,
         height: 630,
         alt: "Island Rental Carts — Daufuskie Island golf cart rentals. $65/day · Book in 2 minutes.",

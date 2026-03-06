@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { PortableTextImage } from "@/components/PortableTextImage";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     params: { slug },
     revalidate: 60,
   });
-  if (!post) return { title: "Post Not Found" };
+  if (!post) return { title: "Post Not Found", description: "The requested blog post was not found. Browse Island Rental Carts blog for Daufuskie Island golf cart rental tips and news." };
   const title = post.metaTitle ?? post.title ?? "Blog | Island Rental Carts";
   const description =
     post.metaDescription ??
@@ -68,6 +69,11 @@ const portableTextComponents = {
     ),
     normal: ({ children }: { children?: React.ReactNode }) => (
       <p className="mb-4 text-gray-300 leading-relaxed">{children}</p>
+    ),
+  },
+  types: {
+    image: ({ value }: { value?: { asset?: { _ref?: string }; alt?: string | null; caption?: string | null } }) => (
+      <PortableTextImage value={value} altFallback="Blog post image — Island Rental Carts, Daufuskie Island golf cart rentals" className="rounded-xl overflow-hidden my-6" />
     ),
   },
   marks: {
