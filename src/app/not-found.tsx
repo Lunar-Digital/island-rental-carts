@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-brand-950 flex flex-col items-center justify-center px-6 text-center">
+    <main className="min-h-screen bg-brand-950 flex flex-col items-center justify-center px-6 text-center">
       <div className="relative w-16 h-16 bg-lime rounded-xl flex items-center justify-center transform -skew-x-12 shadow-lg shadow-lime/20 mb-8">
         <span className="font-black text-brand-950 text-2xl skew-x-12">
           IRC
@@ -25,6 +25,6 @@ export default function NotFound() {
       >
         <Link href="/">Back to Homepage</Link>
       </Button>
-    </div>
+    </main>
   );
 }

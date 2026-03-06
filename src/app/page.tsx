@@ -43,7 +43,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <CartFeatures
           featureBullets={homepage?.featureBullets}
@@ -74,7 +74,7 @@ export default async function Home() {
       </main>
       <Footer />
       <BackToTop />
-      <JsonLd />
+      <JsonLd faq={homepage?.faq} testimonials={homepage?.testimonials} />
     </>
   );
 }

@@ -36,7 +36,7 @@ export default async function BlogIndexPage() {
   const posts = await sanityFetch<Post[]>({ query: POSTS_QUERY });
 
   return (
-    <div className="bg-brand-950 min-h-screen text-white">
+    <main className="bg-brand-950 min-h-screen text-white">
       <section className="max-w-5xl mx-auto px-6 py-16 md:py-24">
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
           Blog
@@ -106,6 +106,6 @@ export default async function BlogIndexPage() {
           </ul>
         )}
       </section>
-    </div>
+    </main>
   );
 }

@@ -18,6 +18,8 @@ export function Hero() {
           fill
           className="object-cover object-center"
           priority
+          fetchPriority="high"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-brand-950" />

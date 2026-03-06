@@ -38,7 +38,7 @@ export function Header() {
       }`}
     >
       <a
-        href="#rentals"
+        href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-60 focus:bg-lime focus:text-brand-950 focus:px-4 focus:py-2 focus:rounded-md focus:font-bold"
       >
         Skip to main content
@@ -49,7 +49,7 @@ export function Header() {
         className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between"
       >
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="/" className="flex items-center gap-3 group">
           <div className="relative w-12 h-12 bg-lime rounded-xl flex items-center justify-center transform -skew-x-12 group-hover:skew-x-0 transition-transform shadow-lg shadow-lime/20">
             <span className="font-black text-brand-950 text-xl skew-x-12 group-hover:skew-x-0 transition-transform">
               IRC

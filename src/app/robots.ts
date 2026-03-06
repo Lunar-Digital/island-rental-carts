@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl, isProduction } from "@/lib/env";
 
+/**
+ * Production: Set NEXT_PUBLIC_SITE_URL=https://islandrentalcarts.com in Vercel
+ * so isProduction() is true and crawlers are allowed. Otherwise robots disallow all.
+ */
 export default function robots(): MetadataRoute.Robots {
   const siteUrl = getSiteUrl();
 
@@ -17,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/admin", "/api"],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
