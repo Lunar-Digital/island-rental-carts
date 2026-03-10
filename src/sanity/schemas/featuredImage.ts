@@ -17,17 +17,11 @@ export const featuredImage = defineType({
       type: "string",
       description: "Required for accessibility and SEO. Describe the image briefly.",
       validation: (Rule) => Rule.required(),
-      options: {
-        isHighlighted: true,
-      },
     },
     {
       name: "caption",
       title: "Caption",
       type: "string",
-      options: {
-        isHighlighted: true,
-      },
     },
   ],
 });

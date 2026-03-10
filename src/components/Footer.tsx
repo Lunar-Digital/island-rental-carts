@@ -6,6 +6,8 @@ import {
   EMAIL_HREF,
   ADDRESS_STREET,
   ADDRESS_CITY,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
 } from "@/lib/constants";
 
 export function Footer() {
@@ -26,7 +28,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.facebook.com/profile.php?id=61561380748083"
+                href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Island Rental Carts on Facebook"
@@ -35,7 +37,7 @@ export function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://www.instagram.com/islandrentalcarts/"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Island Rental Carts on Instagram"

@@ -8,51 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { WaveDivider } from "@/components/WaveDivider";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-
-const DEFAULT_FAQS = [
-  {
-    question: "How do I book a cart?",
-    answer:
-      'Booking is easy! Simply click the "Book Now" button on our website to view real-time availability and secure your reservation online via Peek. The entire process takes about 2 minutes. We recommend booking at least 2\u20133 weeks in advance during peak season (May through September), as carts sell out quickly.',
-  },
-  {
-    question: "Where do I pick up the cart?",
-    answer:
-      "We deliver your golf cart directly to the Daufuskie Island ferry dock so it\u2019s ready and waiting when you arrive. Whether you come in at Melrose Landing or the County Dock, just look for your reserved cart, grab the keys, and go. We also offer free delivery to any rental property on the island for overnight and weekly rentals.",
-  },
-  {
-    question: "What are your rental rates?",
-    answer:
-      "Our standard 4-seater electric golf cart is $65 per day. Multi-day rentals are calculated at the daily rate, and our weekly special is $400 for a full week \u2014 saving you $55 compared to seven individual days. Check the pricing table above for the full breakdown.",
-  },
-  {
-    question: "Do you have 6-seater carts?",
-    answer:
-      "We currently specialize in 4-seater electric golf carts, which are the most popular option on Daufuskie Island and perfect for couples, small families, and groups of up to four. If you need to accommodate a larger group, we recommend renting two carts so everyone can explore comfortably. Contact us and we\u2019ll help coordinate.",
-  },
-  {
-    question: "Do I need a golf cart on Daufuskie Island?",
-    answer:
-      "Yes \u2014 golf carts are the primary mode of transportation on Daufuskie Island. There are no cars, no rideshares, and no public transit. The island is about 8 square miles with sandy roads connecting beaches, historic landmarks, restaurants, and rental properties. A golf cart is essential for getting around, whether you\u2019re visiting for the day or staying for the week.",
-  },
-  {
-    question: "What are the golf cart rules on Daufuskie Island?",
-    answer:
-      "You must be at least 18 years old with a valid driver\u2019s license to operate a golf cart on Daufuskie Island. All South Carolina traffic laws apply, including speed limits and DUI laws. Headlights are required after dark \u2014 all our carts come equipped with them. Seatbelts should be worn when available, and children should be seated securely at all times.",
-  },
-  {
-    question: "How do I get to Daufuskie Island?",
-    answer:
-      "Daufuskie Island is only accessible by boat \u2014 there are no bridges to the mainland. Most visitors take a ferry from Hilton Head Island (about 30\u201345 minutes) or a water taxi from Bluffton or Savannah. Popular ferry services include Lowcountry Ferry, Island Head, and May River Excursions. Book your ferry first, then reserve your golf cart so it\u2019s waiting when you arrive.",
-  },
-  {
-    question: "What if it rains during my rental?",
-    answer:
-      "Our golf carts come with a canopy top that provides cover from light rain and sun. Daufuskie Island weather can change quickly, especially in summer \u2014 brief afternoon showers are common but usually pass within 30 minutes. Rentals are not cancelled or refunded due to weather, but if severe weather is expected, contact us and we\u2019ll work with you on rescheduling.",
-  },
-];
-
-type FAQItem = { question: string; answer: string };
+import { DEFAULT_FAQS, type FAQItem } from "@/content/faq";
 
 type FAQProps = {
   faq?: FAQItem[] | null;

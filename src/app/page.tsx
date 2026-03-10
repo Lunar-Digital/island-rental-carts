@@ -27,7 +27,7 @@ export default async function Home() {
       badge?: string | null;
       pill?: string;
     }[];
-    testimonials?: { quote: string; name: string; title?: string }[];
+    testimonials?: { quote: string; name: string; title?: string; rating?: number; source?: string }[];
     howItWorksSteps?: { title: string; description: string }[];
     howItWorksSectionTitle?: string | null;
     howItWorksBadge?: string | null;

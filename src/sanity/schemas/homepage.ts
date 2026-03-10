@@ -107,11 +107,36 @@ export const homepage = defineType({
             { name: "quote", type: "text", title: "Quote", validation: (Rule) => Rule.required(), rows: 3 },
             { name: "name", type: "string", title: "Author name", validation: (Rule) => Rule.required() },
             { name: "title", type: "string", title: "Author title/subtitle", description: "e.g. Hilton Head Local" },
+            {
+              name: "rating",
+              type: "number",
+              title: "Star rating (1–5)",
+              description: "Used for schema and rich results. Leave empty if unknown. Use 5 for Google reviews.",
+              validation: (Rule) => Rule.min(1).max(5).integer(),
+              options: {
+                list: [
+                  { title: "1 star", value: 1 },
+                  { title: "2 stars", value: 2 },
+                  { title: "3 stars", value: 3 },
+                  { title: "4 stars", value: 4 },
+                  { title: "5 stars", value: 5 },
+                ],
+              },
+            },
+            {
+              name: "source",
+              type: "string",
+              title: "Source",
+              description: 'e.g. "Google" for Google Maps reviews. Leave empty for on-site testimonials.',
+            },
             { name: "avatar", type: "featuredImage", title: "Avatar (optional)" },
           ],
           preview: {
-            select: { name: "name", quote: "quote" },
-            prepare: ({ name, quote }) => ({ title: name, subtitle: quote ? quote.slice(0, 40) + "…" : "" }),
+            select: { name: "name", quote: "quote", source: "source", rating: "rating" },
+            prepare: ({ name, quote, source, rating }) => ({
+              title: name,
+              subtitle: [quote ? quote.slice(0, 40) + "…" : "", source ? `(${source})` : "", rating ? `${rating}★` : ""].filter(Boolean).join(" "),
+            }),
           },
         }),
       ],

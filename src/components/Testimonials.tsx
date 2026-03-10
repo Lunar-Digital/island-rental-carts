@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Star } from "lucide-react";
 import { WaveDivider } from "@/components/WaveDivider";
 
 const DEFAULT_TESTIMONIALS = [
@@ -24,7 +25,9 @@ const DEFAULT_TESTIMONIALS = [
   },
 ];
 
-type Testimonial = { quote: string; name: string; title?: string };
+type Testimonial = { quote: string; name: string; title?: string; rating?: number; source?: string };
+
+const DEFAULT_TESTIMONIALS_TYPED: Testimonial[] = DEFAULT_TESTIMONIALS;
 
 type TestimonialsProps = {
   testimonials?: Testimonial[] | null;
@@ -32,7 +35,7 @@ type TestimonialsProps = {
 
 export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {}) {
   const testimonials =
-    fromSanity?.length ? fromSanity : DEFAULT_TESTIMONIALS;
+    fromSanity?.length ? fromSanity : DEFAULT_TESTIMONIALS_TYPED;
   const [activeIndex, setActiveIndex] = useState(0);
   const current = testimonials[activeIndex];
 
@@ -51,6 +54,26 @@ export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {
         </blockquote>
 
         <div className="flex flex-col items-center gap-1 mb-8">
+          {(current.rating != null || current.source) && (
+            <div className="flex items-center gap-2 mb-2">
+              {current.rating != null && (
+                <div className="flex items-center gap-0.5" aria-label={`${current.rating} out of 5 stars`}>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <Star
+                      key={n}
+                      className={`w-5 h-5 ${n <= (current.rating ?? 0) ? "fill-lime text-lime" : "text-white/30"}`}
+                      aria-hidden
+                    />
+                  ))}
+                </div>
+              )}
+              {current.source && (
+                <span className="text-white/70 text-sm font-medium">
+                  {current.source} Review
+                </span>
+              )}
+            </div>
+          )}
           <span className="text-lime font-black uppercase tracking-normal text-lg md:text-xl">
             {current.name}
           </span>

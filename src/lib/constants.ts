@@ -7,3 +7,20 @@ export const EMAIL = "Paul@IslandRentalCarts.com";
 export const EMAIL_HREF = "mailto:Paul@IslandRentalCarts.com";
 export const ADDRESS_STREET = "10 Melrose Landing Rd";
 export const ADDRESS_CITY = "Daufuskie Island, SC 29915";
+
+/** For schema.org PostalAddress; keep in sync with ADDRESS_STREET and ADDRESS_CITY. */
+export const ADDRESS_LOCALITY = "Daufuskie Island";
+export const ADDRESS_REGION = "SC";
+export const ADDRESS_POSTAL_CODE = "29915";
+
+/** Google Maps listing URL. Used for hasMap and sameAs in LocalBusiness/Organization schema. */
+export const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/NmngoNRMwutWyNiK8";
+
+/** Price range for schema (e.g. Product, LocalBusiness). When you change pricing in Sanity, update here for search snippets. */
+export const PRICE_RANGE = "$65–$400";
+export const PRICE_LOW = 65;
+export const PRICE_HIGH = 400;
+
+/** Social URLs; used in footer and schema sameAs. */
+export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61561380748083";
+export const INSTAGRAM_URL = "https://www.instagram.com/islandrentalcarts/";
