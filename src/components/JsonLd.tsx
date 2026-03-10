@@ -12,6 +12,7 @@ import {
   GOOGLE_MAPS_URL,
   FACEBOOK_URL,
   INSTAGRAM_URL,
+  PRODUCT_IMAGE_PATH,
 } from "@/lib/constants";
 import { DEFAULT_FAQS, type FAQItem } from "@/content/faq";
 
@@ -100,18 +101,19 @@ function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | n
   return localBusiness;
 }
 
-const PRODUCT_REF = {
-  "@type": "Product" as const,
-  name: "4-Seater Electric Golf Cart Rental",
-};
+/** Absolute URL for the single product (4-seater cart) so reviews reference it by @id and only one Product entity is detected. */
+const PRODUCT_ID_FRAGMENT = "#product";
 
-function buildProduct(testimonials: TestimonialItem[] | null) {
+function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
+  const productId = `${siteUrl.replace(/\/$/, "")}${PRODUCT_ID_FRAGMENT}`;
   const product: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": productId,
     name: "4-Seater Electric Golf Cart Rental",
     description:
       "Comfortable 4-seater electric golf cart for exploring Daufuskie Island. Includes headlights, quiet electric motor, and free island-wide delivery.",
+    image: `${siteUrl.replace(/\/$/, "")}${PRODUCT_IMAGE_PATH}`,
     brand: { "@type": "Brand", name: "Island Rental Carts" },
     offers: {
       "@type": "AggregateOffer",
@@ -139,7 +141,7 @@ function buildProduct(testimonials: TestimonialItem[] | null) {
         author: { "@type": "Person" as const, name: t.name },
         reviewBody: t.quote,
         reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
-        itemReviewed: PRODUCT_REF,
+        itemReviewed: { "@id": productId },
       };
     });
   }
@@ -210,7 +212,7 @@ export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
 
   const localBusiness = buildLocalBusiness(siteUrl, testimonialList);
   const organization = buildOrganization(siteUrl);
-  const product = buildProduct(testimonialList);
+  const product = buildProduct(siteUrl, testimonialList);
   const faqPage = buildFaqPage(faqList);
 
   return (

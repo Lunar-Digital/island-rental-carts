@@ -24,3 +24,6 @@ export const PRICE_HIGH = 400;
 /** Social URLs; used in footer and schema sameAs. */
 export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61561380748083";
 export const INSTAGRAM_URL = "https://www.instagram.com/islandrentalcarts/";
+
+/** Product image for schema (4-seater cart). Relative path; JsonLd prepends site URL. */
+export const PRODUCT_IMAGE_PATH = "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg";
