@@ -8,9 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { PEEK_URL } from "@/lib/constants";
 
 const navLinks = [
-  { name: "Rentals", href: "#rentals" },
   { name: "How It Works", href: "#how-it-works" },
-  { name: "Pickup", href: "#pickup" },
   { name: "FAQ", href: "#faq" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },

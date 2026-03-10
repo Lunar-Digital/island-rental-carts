@@ -58,18 +58,10 @@ export function Footer() {
                 <ul className="space-y-4 font-bold text-gray-300">
                   <li>
                     <a
-                      href="#rentals"
+                      href="#how-it-works"
                       className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
                     >
-                      Rentals
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#pickup"
-                      className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
-                    >
-                      Location
+                      How It Works
                     </a>
                   </li>
                   <li>
@@ -78,6 +70,14 @@ export function Footer() {
                       className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
                     >
                       FAQ
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/about"
+                      className="hover:text-lime transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
+                    >
+                      About
                     </a>
                   </li>
                   <li>
