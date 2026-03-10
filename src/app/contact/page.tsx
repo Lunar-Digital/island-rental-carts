@@ -42,7 +42,22 @@ export async function generateMetadata(): Promise<Metadata> {
     title,
     description,
     alternates: { canonical },
-    openGraph: { title, description, url: canonical, type: "website" },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+      siteName: "Island Rental Carts",
+      locale: "en_US",
+      images: [
+        {
+          url: "/images/daufuskie-island-golf-cart-rentals-og.webp",
+          width: 1200,
+          height: 630,
+          alt: "Island Rental Carts — Daufuskie Island golf cart rentals. $65/day · Book in 2 minutes.",
+        },
+      ],
+    },
   };
 }
 

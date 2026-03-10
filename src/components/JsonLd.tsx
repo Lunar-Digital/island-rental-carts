@@ -111,22 +111,40 @@ function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | n
   return localBusiness;
 }
 
-const product = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "4-Seater Electric Golf Cart Rental",
-  description:
-    "Comfortable 4-seater electric golf cart for exploring Daufuskie Island. Includes headlights, quiet electric motor, and free island-wide delivery.",
-  brand: { "@type": "Brand", name: "Island Rental Carts" },
-  offers: {
-    "@type": "AggregateOffer",
-    lowPrice: "65",
-    highPrice: "400",
-    priceCurrency: "USD",
-    offerCount: "7",
-    availability: "https://schema.org/InStock",
-  },
-};
+function buildProduct(testimonials: TestimonialItem[] | null) {
+  const product: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "4-Seater Electric Golf Cart Rental",
+    description:
+      "Comfortable 4-seater electric golf cart for exploring Daufuskie Island. Includes headlights, quiet electric motor, and free island-wide delivery.",
+    brand: { "@type": "Brand", name: "Island Rental Carts" },
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: "65",
+      highPrice: "400",
+      priceCurrency: "USD",
+      offerCount: "7",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
+  if (testimonials && testimonials.length > 0) {
+    product.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      bestRating: "5",
+      reviewCount: String(testimonials.length),
+    };
+    product.review = testimonials.map((t) => ({
+      "@type": "Review" as const,
+      author: { "@type": "Person" as const, name: t.name },
+      reviewBody: t.quote,
+    }));
+  }
+
+  return product;
+}
 
 function buildFaqPage(faqList: FAQItem[]) {
   return {
@@ -149,6 +167,7 @@ export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
   const testimonialList = testimonials?.length ? testimonials : null;
 
   const localBusiness = buildLocalBusiness(siteUrl, testimonialList);
+  const product = buildProduct(testimonialList);
   const faqPage = buildFaqPage(faqList);
 
   return (
