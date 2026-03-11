@@ -27,3 +27,6 @@ export const INSTAGRAM_URL = "https://www.instagram.com/islandrentalcarts/";
 
 /** Product image for schema (4-seater cart). Relative path; JsonLd prepends site URL. */
 export const PRODUCT_IMAGE_PATH = "/images/ezgo-golf-cart-daufuskie-island-rental-course.jpg";
+
+/** Logo for Organization and LocalBusiness schema (optional but recommended). Use branded OG image or a square logo. */
+export const ORGANIZATION_LOGO_PATH = "/images/daufuskie-island-golf-cart-rentals-og.webp";

@@ -13,6 +13,7 @@ import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
   PRODUCT_IMAGE_PATH,
+  ORGANIZATION_LOGO_PATH,
 } from "@/lib/constants";
 import { DEFAULT_FAQS, type FAQItem } from "@/content/faq";
 
@@ -36,13 +37,15 @@ type JsonLdProps = {
 const LOCAL_BUSINESS_REF = { "@type": "LocalBusiness" as const, name: "Island Rental Carts" };
 
 function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | null) {
+  const baseUrl = siteUrl.replace(/\/$/, "");
   const localBusiness: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Island Rental Carts",
     description:
       "4-seater electric golf cart rentals on Daufuskie Island, South Carolina. Daily and weekly rentals with free island-wide delivery.",
-    url: siteUrl,
+    url: baseUrl,
+    image: `${baseUrl}${ORGANIZATION_LOGO_PATH}`,
     telephone: PHONE,
     email: EMAIL,
     address: {
@@ -149,51 +152,11 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
   return product;
 }
 
-function buildOrganization(siteUrl: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Island Rental Carts",
-    url: siteUrl,
-    telephone: PHONE,
-    email: EMAIL,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: ADDRESS_STREET,
-      addressLocality: ADDRESS_LOCALITY,
-      addressRegion: ADDRESS_REGION,
-      postalCode: ADDRESS_POSTAL_CODE,
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 32.1,
-      longitude: -80.87,
-    },
-    hasMap: GOOGLE_MAPS_URL,
-    sameAs: [FACEBOOK_URL, INSTAGRAM_URL, GOOGLE_MAPS_URL],
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "08:00",
-      closes: "18:00",
-    },
-    priceRange: PRICE_RANGE,
-  };
-}
-
 function buildFaqPage(faqList: FAQItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    name: "Frequently Asked Questions about Daufuskie Island Golf Cart Rentals",
     mainEntity: faqList.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -211,7 +174,6 @@ export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
   const testimonialList = testimonials?.length ? testimonials : null;
 
   const localBusiness = buildLocalBusiness(siteUrl, testimonialList);
-  const organization = buildOrganization(siteUrl);
   const product = buildProduct(siteUrl, testimonialList);
   const faqPage = buildFaqPage(faqList);
 
@@ -220,10 +182,6 @@ export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
       />
       <script
         type="application/ld+json"
