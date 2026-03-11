@@ -134,13 +134,13 @@ export function Footer() {
           <p>&copy; 2026 Island Rental Carts. All rights reserved.</p>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="/privacy-policy"
               className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
+              href="/terms-of-service"
               className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950 rounded-sm"
             >
               Terms of Service

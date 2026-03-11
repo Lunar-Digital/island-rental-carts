@@ -135,7 +135,7 @@ export default async function AboutPage() {
   return (
     <>
       <Header />
-      <main className="bg-white min-h-screen" id="main-content">
+      <main className="bg-white min-h-screen pt-10 md:pt-14" id="main-content">
         <section
           aria-label="About Island Rental Carts"
           className="max-w-3xl mx-auto px-6 py-16 md:py-24"
