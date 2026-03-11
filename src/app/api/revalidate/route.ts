@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
 
   try {
     // Invalidate homepage cache so next request refetches Sanity (testimonials, etc.)
-    revalidateTag("homepage");
+    revalidateTag("homepage", "max");
     // Revalidate all routes that use Sanity content
     revalidatePath("/");
     revalidatePath("/about");
