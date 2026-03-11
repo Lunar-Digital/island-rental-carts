@@ -14,6 +14,10 @@ import {
   INSTAGRAM_URL,
   PRODUCT_IMAGE_PATH,
   ORGANIZATION_LOGO_PATH,
+  GEO_LATITUDE,
+  GEO_LONGITUDE,
+  OPENING_TIME,
+  CLOSING_TIME,
 } from "@/lib/constants";
 import { DEFAULT_FAQS, type FAQItem } from "@/content/faq";
 
@@ -34,13 +38,22 @@ type JsonLdProps = {
   testimonials?: TestimonialItem[] | null;
 };
 
+/** Stable @id for LocalBusiness so Contact page can reuse and Google merges one entity. */
+export const LOCAL_BUSINESS_ID_FRAGMENT = "#localbusiness";
+
 const LOCAL_BUSINESS_REF = { "@type": "LocalBusiness" as const, name: "Island Rental Carts" };
 
-function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | null) {
+/**
+ * Builds LocalBusiness JSON-LD. Exported for use on Contact page (call with testimonials: null).
+ * Same @id on Home and Contact so Google sees one business.
+ */
+export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | null): Record<string, unknown> {
   const baseUrl = siteUrl.replace(/\/$/, "");
+  const localBusinessId = `${baseUrl}${LOCAL_BUSINESS_ID_FRAGMENT}`;
   const localBusiness: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": localBusinessId,
     name: "Island Rental Carts",
     description:
       "4-seater electric golf cart rentals on Daufuskie Island, South Carolina. Daily and weekly rentals with free island-wide delivery.",
@@ -56,10 +69,11 @@ function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | n
       postalCode: ADDRESS_POSTAL_CODE,
       addressCountry: "US",
     },
+    areaServed: { "@type": "Place" as const, name: ADDRESS_LOCALITY },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 32.1,
-      longitude: -80.87,
+      latitude: GEO_LATITUDE,
+      longitude: GEO_LONGITUDE,
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
@@ -72,8 +86,8 @@ function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | n
         "Saturday",
         "Sunday",
       ],
-      opens: "08:00",
-      closes: "18:00",
+      opens: OPENING_TIME,
+      closes: CLOSING_TIME,
     },
     priceRange: PRICE_RANGE,
     hasMap: GOOGLE_MAPS_URL,
@@ -123,7 +137,7 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
       lowPrice: String(PRICE_LOW),
       highPrice: String(PRICE_HIGH),
       priceCurrency: "USD",
-      offerCount: "7",
+      offerCount: "1",
       availability: "https://schema.org/InStock",
     },
   };

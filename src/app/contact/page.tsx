@@ -14,6 +14,7 @@ import {
   ADDRESS_STREET,
   ADDRESS_CITY,
 } from "@/lib/constants";
+import { buildLocalBusiness } from "@/components/JsonLd";
 import { contactContent, contactMeta } from "@/content/aboutContact";
 import type { Metadata } from "next";
 
@@ -131,8 +132,14 @@ export default async function ContactPage() {
   const body =
     page?.body && page.body.length > 0 ? page.body : contactContent.body;
 
+  const localBusinessJson = buildLocalBusiness(siteUrl, null);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJson) }}
+      />
       <Header />
       <main className="bg-white min-h-screen pt-10 md:pt-14" id="main-content">
         <section

@@ -16,6 +16,14 @@ export const ADDRESS_POSTAL_CODE = "29915";
 /** Google Maps listing URL. Used for hasMap and sameAs in LocalBusiness/Organization schema. */
 export const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/NmngoNRMwutWyNiK8";
 
+/** Exact coordinates from Google Maps (Island Rental Carts). Used in LocalBusiness geo for schema. */
+export const GEO_LATITUDE = 32.1300097;
+export const GEO_LONGITUDE = -80.8702359;
+
+/** Opening hours for schema; match Google Maps listing (8:30am–5:30pm). */
+export const OPENING_TIME = "08:30";
+export const CLOSING_TIME = "17:30";
+
 /** Price range for schema (e.g. Product, LocalBusiness). When you change pricing in Sanity, update here for search snippets. */
 export const PRICE_RANGE = "$65–$400";
 export const PRICE_LOW = 65;
