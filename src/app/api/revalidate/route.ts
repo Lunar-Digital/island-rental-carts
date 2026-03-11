@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 /**
@@ -48,6 +48,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // Invalidate homepage cache so next request refetches Sanity (testimonials, etc.)
+    revalidateTag("homepage");
     // Revalidate all routes that use Sanity content
     revalidatePath("/");
     revalidatePath("/about");

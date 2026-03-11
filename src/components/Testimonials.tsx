@@ -56,17 +56,15 @@ export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {
         <div className="flex flex-col items-center gap-1 mb-8">
           {(current.rating != null || current.source) && (
             <div className="flex items-center gap-2 mb-2">
-              {current.rating != null && (
-                <div className="flex items-center gap-0.5" aria-label={`${current.rating} out of 5 stars`}>
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <Star
-                      key={n}
-                      className={`w-5 h-5 ${n <= (current.rating ?? 0) ? "fill-lime text-lime" : "text-white/30"}`}
-                      aria-hidden
-                    />
-                  ))}
-                </div>
-              )}
+              <div className="flex items-center gap-0.5" aria-label={`${current.rating ?? 5} out of 5 stars`}>
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star
+                    key={n}
+                    className={`w-5 h-5 ${n <= (current.rating ?? 5) ? "fill-lime text-lime" : "text-white/30"}`}
+                    aria-hidden
+                  />
+                ))}
+              </div>
               {current.source && (
                 <span className="text-white/70 text-sm font-medium">
                   {current.source} Review
@@ -75,7 +73,7 @@ export function Testimonials({ testimonials: fromSanity }: TestimonialsProps = {
             </div>
           )}
           <span className="text-lime font-black uppercase tracking-normal text-lg md:text-xl">
-            {current.name}
+            {current.name?.trim() || (current.source === "Google" ? "Google reviewer" : "Customer")}
           </span>
           {current.title && (
             <span className="text-white/80 font-medium text-sm">

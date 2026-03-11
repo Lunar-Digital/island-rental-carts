@@ -141,9 +141,10 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
     };
     product.review = testimonials.map((t) => {
       const rating = t.rating ?? 5;
+      const authorName = t.name?.trim() || (t.source === "Google" ? "Google reviewer" : "Customer");
       return {
         "@type": "Review" as const,
-        author: { "@type": "Person" as const, name: t.name },
+        author: { "@type": "Person" as const, name: authorName },
         reviewBody: t.quote,
         reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
         itemReviewed: { "@id": productId },

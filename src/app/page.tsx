@@ -38,7 +38,7 @@ export default async function Home() {
     faq?: { question: string; answer: string }[];
     newsletterHeading?: string | null;
     newsletterSubtext?: string | null;
-  }>({ query: HOMEPAGE_QUERY, revalidate: 60 });
+  }>({ query: HOMEPAGE_QUERY, revalidate: 60, tags: ["homepage"] });
 
   return (
     <>
