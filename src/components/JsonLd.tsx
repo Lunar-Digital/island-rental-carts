@@ -41,19 +41,17 @@ type JsonLdProps = {
 /** Stable @id for LocalBusiness so Contact page can reuse and Google merges one entity. */
 export const LOCAL_BUSINESS_ID_FRAGMENT = "#localbusiness";
 
-const LOCAL_BUSINESS_REF = { "@type": "LocalBusiness" as const, name: "Island Rental Carts" };
-
 /**
  * Builds LocalBusiness JSON-LD. Exported for use on Contact page (call with testimonials: null).
  * Same @id on Home and Contact so Google sees one business.
+ * Only aggregateRating is set here (no review array); full reviews live on Product only so Rich Results Test shows 1 Organisation and 1 Product with reviews instead of 4/8 duplicate items.
  */
 export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | null): Record<string, unknown> {
   const baseUrl = siteUrl.replace(/\/$/, "");
-  const localBusinessId = `${baseUrl}${LOCAL_BUSINESS_ID_FRAGMENT}`;
   const localBusiness: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": localBusinessId,
+    "@id": `${baseUrl}${LOCAL_BUSINESS_ID_FRAGMENT}`,
     name: "Island Rental Carts",
     description:
       "4-seater electric golf cart rentals on Daufuskie Island, South Carolina. Daily and weekly rentals with free island-wide delivery.",
@@ -103,16 +101,6 @@ export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialIte
       bestRating: "5",
       reviewCount: String(testimonials.length),
     };
-    localBusiness.review = testimonials.map((t) => {
-      const rating = t.rating ?? 5;
-      return {
-        "@type": "Review" as const,
-        author: { "@type": "Person" as const, name: t.name },
-        reviewBody: t.quote,
-        reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
-        itemReviewed: LOCAL_BUSINESS_REF,
-      };
-    });
   }
 
   return localBusiness;
