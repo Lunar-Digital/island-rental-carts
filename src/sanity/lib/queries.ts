@@ -17,7 +17,8 @@ export const HOMEPAGE_QUERY = `*[_id == "homepage"][0] {
   whyChooseUsBadge,
   faq[] { question, answer },
   newsletterHeading,
-  newsletterSubtext
+  newsletterSubtext,
+  structuredData { enableFaq, enableReviews, disableItemReviewed, removeFields }
 }`;
 
 /**
@@ -30,7 +31,8 @@ export const PAGE_BY_ID_QUERY = `*[_id == $id][0] {
   body,
   featuredImage,
   "metaTitle": seo.metaTitle,
-  "metaDescription": seo.metaDescription
+  "metaDescription": seo.metaDescription,
+  structuredData { enableFaq, enableReviews, disableItemReviewed, removeFields }
 }`;
 
 /**

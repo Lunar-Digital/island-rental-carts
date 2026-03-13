@@ -12,6 +12,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { JsonLd } from "@/components/JsonLd";
 import { sanityFetch } from "@/sanity/lib/client";
 import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
+import type { StructuredDataSettings } from "@/types/structuredData";
 
 export default async function Home() {
   const homepage = await sanityFetch<{
@@ -38,6 +39,7 @@ export default async function Home() {
     faq?: { question: string; answer: string }[];
     newsletterHeading?: string | null;
     newsletterSubtext?: string | null;
+    structuredData?: StructuredDataSettings | null;
   }>({ query: HOMEPAGE_QUERY, revalidate: 60, tags: ["homepage"] });
 
   return (
@@ -74,7 +76,11 @@ export default async function Home() {
       </main>
       <Footer />
       <BackToTop />
-      <JsonLd faq={homepage?.faq} testimonials={homepage?.testimonials} />
+      <JsonLd
+        faq={homepage?.faq}
+        testimonials={homepage?.testimonials}
+        structuredData={homepage?.structuredData}
+      />
     </>
   );
 }

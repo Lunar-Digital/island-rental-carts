@@ -18,6 +18,7 @@ export const homepage = defineType({
     { name: "whyChooseUs", title: "Why Choose Us" },
     { name: "faq", title: "FAQ" },
     { name: "newsletter", title: "Newsletter" },
+    { name: "structuredData", title: "Structured Data Controls" },
   ],
   fields: [
     // ——— Cart Features (content only; list style fixed in code) ———
@@ -246,6 +247,12 @@ export const homepage = defineType({
       group: "newsletter",
       rows: 3,
       description: "Leave empty to use default copy.",
+    }),
+    defineField({
+      name: "structuredData",
+      title: "Structured Data Controls",
+      type: "structuredData",
+      group: "structuredData",
     }),
   ],
   preview: {

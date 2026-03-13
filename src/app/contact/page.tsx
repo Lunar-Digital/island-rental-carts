@@ -17,6 +17,7 @@ import {
 import { buildLocalBusiness } from "@/components/JsonLd";
 import { contactContent, contactMeta } from "@/content/aboutContact";
 import type { Metadata } from "next";
+import type { StructuredDataSettings } from "@/types/structuredData";
 
 const siteUrl = getSiteUrl();
 
@@ -25,6 +26,7 @@ type PageDoc = {
   body?: PortableTextBlock[];
   metaTitle?: string | null;
   metaDescription?: string | null;
+  structuredData?: StructuredDataSettings | null;
 };
 
 export const dynamic = "force-dynamic";
@@ -132,7 +134,7 @@ export default async function ContactPage() {
   const body =
     page?.body && page.body.length > 0 ? page.body : contactContent.body;
 
-  const localBusinessJson = buildLocalBusiness(siteUrl, null);
+  const localBusinessJson = buildLocalBusiness(siteUrl, null, page?.structuredData ?? undefined);
 
   return (
     <>

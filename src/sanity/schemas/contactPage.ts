@@ -37,6 +37,11 @@ export const contactPage = defineType({
       title: "SEO",
       type: "seo",
     }),
+    defineField({
+      name: "structuredData",
+      title: "Structured Data Controls",
+      type: "structuredData",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Contact" }),

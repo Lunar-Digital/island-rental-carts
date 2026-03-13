@@ -42,6 +42,11 @@ export const aboutPage = defineType({
       title: "SEO",
       type: "seo",
     }),
+    defineField({
+      name: "structuredData",
+      title: "Structured Data Controls",
+      type: "structuredData",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "About" }),

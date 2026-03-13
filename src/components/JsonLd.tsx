@@ -20,6 +20,17 @@ import {
   CLOSING_TIME,
 } from "@/lib/constants";
 import { DEFAULT_FAQS, type FAQItem } from "@/content/faq";
+import type { StructuredDataSettings } from "@/types/structuredData";
+
+function applyRemoveFields<T extends Record<string, unknown>>(
+  obj: T,
+  removeFields?: string[],
+): T {
+  if (!removeFields?.length) return obj;
+  const next = { ...obj };
+  for (const key of removeFields) if (key in next) delete next[key];
+  return next;
+}
 
 type TestimonialItem = {
   quote: string;
@@ -36,6 +47,8 @@ type JsonLdProps = {
   faq?: FAQItem[] | null;
   /** Testimonials from Sanity (homepage). When provided, LocalBusiness gets aggregateRating and review for rich results. */
   testimonials?: TestimonialItem[] | null;
+  /** Sanity-driven controls for schema (enableFaq, enableReviews, disableItemReviewed, removeFields). */
+  structuredData?: StructuredDataSettings | null;
 };
 
 /** Stable @id for LocalBusiness so Contact page can reuse and Google merges one entity. */
@@ -46,7 +59,12 @@ export const LOCAL_BUSINESS_ID_FRAGMENT = "#localbusiness";
  * Same @id on Home and Contact so Google sees one business.
  * Only aggregateRating is set here (no review array); full reviews live on Product only so Rich Results Test shows 1 Organisation and 1 Product with reviews instead of 4/8 duplicate items.
  */
-export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | null): Record<string, unknown> {
+export function buildLocalBusiness(
+  siteUrl: string,
+  testimonials: TestimonialItem[] | null,
+  schemaSettings: StructuredDataSettings = {},
+): Record<string, unknown> {
+  const settings = schemaSettings ?? {};
   const baseUrl = siteUrl.replace(/\/$/, "");
   const localBusiness: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -92,7 +110,7 @@ export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialIte
     sameAs: [FACEBOOK_URL, INSTAGRAM_URL, GOOGLE_MAPS_URL],
   };
 
-  if (testimonials && testimonials.length > 0) {
+  if (settings.enableReviews !== false && testimonials && testimonials.length > 0) {
     const ratingSum = testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0);
     const avgRating = (ratingSum / testimonials.length).toFixed(1);
     localBusiness.aggregateRating = {
@@ -103,13 +121,18 @@ export function buildLocalBusiness(siteUrl: string, testimonials: TestimonialIte
     };
   }
 
-  return localBusiness;
+  return applyRemoveFields(localBusiness, settings.removeFields);
 }
 
 /** Absolute URL for the single product (4-seater cart) so reviews reference it by @id and only one Product entity is detected. */
 const PRODUCT_ID_FRAGMENT = "#product";
 
-function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
+function buildProduct(
+  siteUrl: string,
+  testimonials: TestimonialItem[] | null,
+  schemaSettings: StructuredDataSettings = {},
+) {
+  const settings = schemaSettings ?? {};
   const productId = `${siteUrl.replace(/\/$/, "")}${PRODUCT_ID_FRAGMENT}`;
   const product: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -130,7 +153,7 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
     },
   };
 
-  if (testimonials && testimonials.length > 0) {
+  if (settings.enableReviews !== false && testimonials && testimonials.length > 0) {
     const ratingSum = testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0);
     const avgRating = (ratingSum / testimonials.length).toFixed(1);
     product.aggregateRating = {
@@ -139,24 +162,31 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
       bestRating: "5",
       reviewCount: String(testimonials.length),
     };
+    const omitItemReviewed = settings.disableItemReviewed === true;
     product.review = testimonials.map((t) => {
       const rating = t.rating ?? 5;
       const authorName = t.name?.trim() || (t.source === "Google" ? "Google reviewer" : "Customer");
-      return {
+      const review: Record<string, unknown> = {
         "@type": "Review" as const,
         author: { "@type": "Person" as const, name: authorName },
         reviewBody: t.quote,
         reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
-        itemReviewed: { "@id": productId },
       };
+      if (!omitItemReviewed) review.itemReviewed = { "@id": productId };
+      return review;
     });
   }
 
-  return product;
+  return applyRemoveFields(product, settings.removeFields);
 }
 
-function buildFaqPage(faqList: FAQItem[]) {
-  return {
+function buildFaqPage(
+  faqList: FAQItem[],
+  schemaSettings: StructuredDataSettings = {},
+): Record<string, unknown> | null {
+  const settings = schemaSettings ?? {};
+  if (settings.enableFaq === false) return null;
+  const faqPage = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     name: "Frequently Asked Questions about Daufuskie Island Golf Cart Rentals",
@@ -169,16 +199,18 @@ function buildFaqPage(faqList: FAQItem[]) {
       },
     })),
   };
+  return applyRemoveFields(faqPage, settings.removeFields);
 }
 
-export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
+export function JsonLd({ faq, testimonials, structuredData: schemaSettings }: JsonLdProps = {}) {
   const siteUrl = getSiteUrl();
   const faqList = faq?.length ? faq : DEFAULT_FAQS;
   const testimonialList = testimonials?.length ? testimonials : null;
+  const settings = schemaSettings ?? {};
 
-  const localBusiness = buildLocalBusiness(siteUrl, testimonialList);
-  const product = buildProduct(siteUrl, testimonialList);
-  const faqPage = buildFaqPage(faqList);
+  const localBusiness = buildLocalBusiness(siteUrl, testimonialList, settings);
+  const product = buildProduct(siteUrl, testimonialList, settings);
+  const faqPage = buildFaqPage(faqList, settings);
 
   return (
     <>
@@ -190,10 +222,12 @@ export function JsonLd({ faq, testimonials }: JsonLdProps = {}) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(product) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
-      />
+      {faqPage !== null && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
+        />
+      )}
     </>
   );
 }

@@ -59,6 +59,12 @@ export const post = defineType({
       type: "seo",
       group: "seo",
     }),
+    defineField({
+      name: "structuredData",
+      title: "Structured Data Controls",
+      type: "structuredData",
+      group: "seo",
+    }),
   ],
   preview: {
     select: { title: "title", media: "featuredImage" },
