@@ -93,7 +93,6 @@ function buildLocalBusiness(siteUrl: string, testimonials: TestimonialItem[] | n
         author: { "@type": "Person" as const, name: t.name },
         reviewBody: t.quote,
         reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
-        itemReviewed: LOCAL_BUSINESS_REF,
       };
     });
   }
@@ -141,7 +140,6 @@ function buildProduct(siteUrl: string, testimonials: TestimonialItem[] | null) {
         author: { "@type": "Person" as const, name: t.name },
         reviewBody: t.quote,
         reviewRating: { "@type": "Rating" as const, ratingValue: String(rating), bestRating: "5" },
-        itemReviewed: { "@id": productId },
       };
     });
   }
